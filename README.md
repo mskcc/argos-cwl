@@ -10,7 +10,7 @@ For example, each CWL module that performs at the tumor-normal pair level are co
 
 This repo contains git submodules; make sure to `git clone --recursive` when downloading.
 
-CWLs have been tested with the `toil` executor, found [here](https://github.com/DataBiosphere/toil). 
+CWLs have been tested with the `toil` executor, found [here](https://github.com/DataBiosphere/toil).
 
 ## Directories
 
