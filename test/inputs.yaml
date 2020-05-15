@@ -85,7 +85,7 @@ curated_bams:
 db_files:
   bait_intervals:
     class: File
-    location: /juno/work/ci/resources/roslin_resources/targets/IMPACT468/b37/picard_baits.interval_list
+    location: /juno/work/ci/resources/genomic_resources/targets/IMPACT468/b37/picard_baits.interval_list
   conpair_markers: /usr/bin/conpair/data/markers/GRCh37.autosomes.phase3_shapeit2_mvncall_integrated.20130502.SNV.genotype.sselect_v4_MAF_0.4_LD_0.8.txt
   conpair_markers_bed: /usr/bin/conpair/data/markers/GRCh37.autosomes.phase3_shapeit2_mvncall_integrated.20130502.SNV.genotype.sselect_v4_MAF_0.4_LD_0.8.bed
   custom_enst: /usr/bin/vcf2maf/data/isoform_overrides_at_mskcc
@@ -97,13 +97,13 @@ db_files:
     path: /juno/work/ci/resources/genomes/GRCh37/facets_snps/dbsnp_137.b37__RmDupsClean__plusPseudo50__DROP_SORT.vcf.gz
   fp_genotypes:
     class: File
-    location: /juno/work/ci/resources/roslin_resources/targets/IMPACT468/b37/FP_tiling_genotypes.txt
+    location: /juno/work/ci/resources/genomic_resources/targets/IMPACT468/b37/FP_tiling_genotypes.txt
   fp_intervals:
     class: File
-    location: /juno/work/ci/resources/roslin_resources/targets/IMPACT468/b37/FP_tiling_intervals.list
   grouping_file:
     class: File
     path: /juno/work/ci/roslin-test/variant/2.6.1/workspace/nikhil-3.10/examples/Alignment/Proj_ROSLIN_DEV_sample_grouping.txt
+    location: /juno/work/ci/resources/genomic_resources/targets/IMPACT468/b37/FP_tiling_intervals.list
   hotspot_list: /usr/bin/ngs-filters/data/hotspot-list-union-v1-v2.txt
   hotspot_list_maf:
     class: File
@@ -123,7 +123,7 @@ db_files:
     path: /juno/work/ci/roslin-test/variant/2.6.1/workspace/nikhil-3.10/examples/Alignment/Proj_ROSLIN_DEV_request.txt
   target_intervals:
     class: File
-    location: /juno/work/ci/resources/roslin_resources/targets/IMPACT468/b37/picard_targets.interval_list
+    location: /juno/work/ci/resources/genomic_resources/targets/IMPACT468/b37/picard_targets.interval_list
   vep_data: /var/cache
   vep_path: /usr/bin/vep
 dbsnp:
