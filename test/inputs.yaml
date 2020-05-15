@@ -104,7 +104,7 @@ db_files:
   hotspot_list: /usr/bin/ngs-filters/data/hotspot-list-union-v1-v2.txt
   hotspot_list_maf:
     class: File
-    path: /juno/work/ci/resources/roslin-qc/hotspot-list-union-v1-v2.maf
+    path: /juno/work/ci/resources/qc_resources/hotspot-list-union-v1-v2.maf
   hotspot_vcf: /usr/bin/basicfiltering/data/hotspot-list-union-v1-v2.vcf
   refseq:
     class: File
