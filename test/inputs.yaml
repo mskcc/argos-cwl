@@ -100,27 +100,15 @@ db_files:
     location: /juno/work/ci/resources/genomic_resources/targets/IMPACT468/b37/FP_tiling_genotypes.txt
   fp_intervals:
     class: File
-  grouping_file:
-    class: File
-    path: /juno/work/ci/roslin-test/variant/2.6.1/workspace/nikhil-3.10/examples/Alignment/Proj_ROSLIN_DEV_sample_grouping.txt
     location: /juno/work/ci/resources/genomic_resources/targets/IMPACT468/b37/FP_tiling_intervals.list
   hotspot_list: /usr/bin/ngs-filters/data/hotspot-list-union-v1-v2.txt
   hotspot_list_maf:
     class: File
     path: /juno/work/ci/resources/roslin-qc/hotspot-list-union-v1-v2.maf
   hotspot_vcf: /usr/bin/basicfiltering/data/hotspot-list-union-v1-v2.vcf
-  mapping_file:
-    class: File
-    path: /juno/work/ci/roslin-test/variant/2.6.1/workspace/nikhil-3.10/examples/Alignment/Proj_ROSLIN_DEV_sample_mapping.txt
-  pairing_file:
-    class: File
-    path: /juno/work/ci/roslin-test/variant/2.6.1/workspace/nikhil-3.10/examples/Alignment/Proj_ROSLIN_DEV_sample_pairing.txt
   refseq:
     class: File
     path: /juno/work/ci/resources/request_files/refseq/refGene_b37.sorted.txt
-  request_file:
-    class: File
-    path: /juno/work/ci/roslin-test/variant/2.6.1/workspace/nikhil-3.10/examples/Alignment/Proj_ROSLIN_DEV_request.txt
   target_intervals:
     class: File
     location: /juno/work/ci/resources/genomic_resources/targets/IMPACT468/b37/picard_targets.interval_list
