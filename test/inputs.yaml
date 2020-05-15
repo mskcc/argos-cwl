@@ -147,10 +147,10 @@ pairs:
     group: Group_2
     zR1:
     - class: File
-      path: /juno/work/ci/roslin-test/data/fastq/DU874145-T/DU874145-T_IGO_00000_TEST_L001_R1_001.fastq.gz
+      path: /juno/work/ci/argos-test/data/fastq/DU874145-T/DU874145-T_IGO_00000_TEST_L001_R1_001.fastq.gz
     zR2:
     - class: File
-      path: /juno/work/ci/roslin-test/data/fastq/DU874145-T/DU874145-T_IGO_00000_TEST_L001_R2_001.fastq.gz
+      path: /juno/work/ci/argos-test/data/fastq/DU874145-T/DU874145-T_IGO_00000_TEST_L001_R2_001.fastq.gz
   - CN: MSKCC
     ID: foo_normal
     LB: foo_normal_1
@@ -165,7 +165,7 @@ pairs:
     adapter2: AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT
     bam:
     - class: File
-      path: /juno/work/ci/roslin-test/data/SampleWorkflowPair0Sample1/SampleWorkflow/foo_normal.rg.md.bam
+      path: /juno/work/ci/argos-test/data/SampleWorkflowPair0Sample1/SampleWorkflow/foo_normal.rg.md.bam
     bwa_output: foo_normal.bam
     group: Group_2
     zR1: []
@@ -178,10 +178,10 @@ pairs:
     - bar_tumor_1-bar_tumor
     R1:
     - class: File
-      path: /juno/work/ci/roslin-test/data/fastq/DU874145-T/DU874145-T_IGO_00000_TEST_L001_R1_001.fastq.gz
+      path: /juno/work/ci/argos-test/data/fastq/DU874145-T/DU874145-T_IGO_00000_TEST_L001_R1_001.fastq.gz
     R2:
     - class: File
-      path: /juno/work/ci/roslin-test/data/fastq/DU874145-T/DU874145-T_IGO_00000_TEST_L001_R2_001.fastq.gz
+      path: /juno/work/ci/argos-test/data/fastq/DU874145-T/DU874145-T_IGO_00000_TEST_L001_R2_001.fastq.gz
     RG_ID:
     - bar_tumor_1-bar_tumorPE
     adapter: AGATCGGAAGAGCACACGTCTGAACTCCAGTCACATGAGCATCTCGTATGCCGTCTTCTGCTTG
@@ -199,10 +199,10 @@ pairs:
     - bar_normal_1-bar_normal
     R1:
     - class: File
-      path: /juno/work/ci/roslin-test/data/fastq/DU874145-N/DU874145-N_IGO_00000_TEST_L001_R1_001.fastq.gz
+      path: /juno/work/ci/argos-test/data/fastq/DU874145-N/DU874145-N_IGO_00000_TEST_L001_R1_001.fastq.gz
     R2:
     - class: File
-      path: /juno/work/ci/roslin-test/data/fastq/DU874145-N/DU874145-N_IGO_00000_TEST_L001_R2_001.fastq.gz
+      path: /juno/work/ci/argos-test/data/fastq/DU874145-N/DU874145-N_IGO_00000_TEST_L001_R2_001.fastq.gz
     RG_ID:
     - bar_normal_1-bar_normalPE
     adapter: AGATCGGAAGAGCACACGTCTGAACTCCAGTCACATGAGCATCTCGTATGCCGTCTTCTGCTTG
