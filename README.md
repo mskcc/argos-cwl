@@ -1,4 +1,4 @@
-# argos-cwl
+# Argos-cwl
 
 CWLs for the Argos pipeline.
 
