@@ -1,6 +1,6 @@
-# roslin-cwl
+# argos-cwl
 
-CWLs for the Roslin pipeline.
+CWLs for the Argos pipeline.
 
 The CWLs are categorized in multiple directories based on their unit of work, although the CWLs contained within can refer to other CWL directories via their relative path.
 
