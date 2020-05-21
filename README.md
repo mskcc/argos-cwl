@@ -1,6 +1,6 @@
-# roslin-cwl
+# Argos-cwl
 
-CWLs for the Roslin pipeline.
+CWLs for the Argos pipeline.
 
 The CWLs are categorized in multiple directories based on their unit of work, although the CWLs contained within can refer to other CWL directories via their relative path.
 
@@ -10,7 +10,7 @@ For example, each CWL module that performs at the tumor-normal pair level are co
 
 This repo contains git submodules; make sure to `git clone --recursive` when downloading.
 
-CWLs have been tested with the `toil` executor, found [here](https://github.com/DataBiosphere/toil). 
+CWLs have been tested with the `toil` executor, found [here](https://github.com/DataBiosphere/toil).
 
 ## Directories
 

@@ -85,7 +85,7 @@ curated_bams:
 db_files:
   bait_intervals:
     class: File
-    location: /juno/work/ci/resources/roslin_resources/targets/IMPACT468/b37/picard_baits.interval_list
+    location: /juno/work/ci/resources/genomic_resources/targets/IMPACT468/b37/picard_baits.interval_list
   conpair_markers: /usr/bin/conpair/data/markers/GRCh37.autosomes.phase3_shapeit2_mvncall_integrated.20130502.SNV.genotype.sselect_v4_MAF_0.4_LD_0.8.txt
   conpair_markers_bed: /usr/bin/conpair/data/markers/GRCh37.autosomes.phase3_shapeit2_mvncall_integrated.20130502.SNV.genotype.sselect_v4_MAF_0.4_LD_0.8.bed
   custom_enst: /usr/bin/vcf2maf/data/isoform_overrides_at_mskcc
@@ -97,33 +97,21 @@ db_files:
     path: /juno/work/ci/resources/genomes/GRCh37/facets_snps/dbsnp_137.b37__RmDupsClean__plusPseudo50__DROP_SORT.vcf.gz
   fp_genotypes:
     class: File
-    location: /juno/work/ci/resources/roslin_resources/targets/IMPACT468/b37/FP_tiling_genotypes.txt
+    location: /juno/work/ci/resources/genomic_resources/targets/IMPACT468/b37/FP_tiling_genotypes.txt
   fp_intervals:
     class: File
-    location: /juno/work/ci/resources/roslin_resources/targets/IMPACT468/b37/FP_tiling_intervals.list
-  grouping_file:
-    class: File
-    path: /juno/work/ci/roslin-test/variant/2.6.1/workspace/nikhil-3.10/examples/Alignment/Proj_ROSLIN_DEV_sample_grouping.txt
+    location: /juno/work/ci/resources/genomic_resources/targets/IMPACT468/b37/FP_tiling_intervals.list
   hotspot_list: /usr/bin/ngs-filters/data/hotspot-list-union-v1-v2.txt
   hotspot_list_maf:
     class: File
-    path: /juno/work/ci/resources/roslin-qc/hotspot-list-union-v1-v2.maf
+    path: /juno/work/ci/resources/qc_resources/hotspot-list-union-v1-v2.maf
   hotspot_vcf: /usr/bin/basicfiltering/data/hotspot-list-union-v1-v2.vcf
-  mapping_file:
-    class: File
-    path: /juno/work/ci/roslin-test/variant/2.6.1/workspace/nikhil-3.10/examples/Alignment/Proj_ROSLIN_DEV_sample_mapping.txt
-  pairing_file:
-    class: File
-    path: /juno/work/ci/roslin-test/variant/2.6.1/workspace/nikhil-3.10/examples/Alignment/Proj_ROSLIN_DEV_sample_pairing.txt
   refseq:
     class: File
     path: /juno/work/ci/resources/request_files/refseq/refGene_b37.sorted.txt
-  request_file:
-    class: File
-    path: /juno/work/ci/roslin-test/variant/2.6.1/workspace/nikhil-3.10/examples/Alignment/Proj_ROSLIN_DEV_request.txt
   target_intervals:
     class: File
-    location: /juno/work/ci/resources/roslin_resources/targets/IMPACT468/b37/picard_targets.interval_list
+    location: /juno/work/ci/resources/genomic_resources/targets/IMPACT468/b37/picard_targets.interval_list
   vep_data: /var/cache
   vep_path: /usr/bin/vep
 dbsnp:
@@ -159,10 +147,10 @@ pairs:
     group: Group_2
     zR1:
     - class: File
-      path: /juno/work/ci/roslin-test/data/fastq/DU874145-T/DU874145-T_IGO_00000_TEST_L001_R1_001.fastq.gz
+      path: /juno/work/ci/argos-test/data/fastq/DU874145-T/DU874145-T_IGO_00000_TEST_L001_R1_001.fastq.gz
     zR2:
     - class: File
-      path: /juno/work/ci/roslin-test/data/fastq/DU874145-T/DU874145-T_IGO_00000_TEST_L001_R2_001.fastq.gz
+      path: /juno/work/ci/argos-test/data/fastq/DU874145-T/DU874145-T_IGO_00000_TEST_L001_R2_001.fastq.gz
   - CN: MSKCC
     ID: foo_normal
     LB: foo_normal_1
@@ -177,7 +165,7 @@ pairs:
     adapter2: AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT
     bam:
     - class: File
-      path: /juno/work/ci/roslin-test/data/SampleWorkflowPair0Sample1/SampleWorkflow/foo_normal.rg.md.bam
+      path: /juno/work/ci/argos-test/data/SampleWorkflowPair0Sample1/SampleWorkflow/foo_normal.rg.md.bam
     bwa_output: foo_normal.bam
     group: Group_2
     zR1: []
@@ -190,10 +178,10 @@ pairs:
     - bar_tumor_1-bar_tumor
     R1:
     - class: File
-      path: /juno/work/ci/roslin-test/data/fastq/DU874145-T/DU874145-T_IGO_00000_TEST_L001_R1_001.fastq.gz
+      path: /juno/work/ci/argos-test/data/fastq/DU874145-T/DU874145-T_IGO_00000_TEST_L001_R1_001.fastq.gz
     R2:
     - class: File
-      path: /juno/work/ci/roslin-test/data/fastq/DU874145-T/DU874145-T_IGO_00000_TEST_L001_R2_001.fastq.gz
+      path: /juno/work/ci/argos-test/data/fastq/DU874145-T/DU874145-T_IGO_00000_TEST_L001_R2_001.fastq.gz
     RG_ID:
     - bar_tumor_1-bar_tumorPE
     adapter: AGATCGGAAGAGCACACGTCTGAACTCCAGTCACATGAGCATCTCGTATGCCGTCTTCTGCTTG
@@ -211,10 +199,10 @@ pairs:
     - bar_normal_1-bar_normal
     R1:
     - class: File
-      path: /juno/work/ci/roslin-test/data/fastq/DU874145-N/DU874145-N_IGO_00000_TEST_L001_R1_001.fastq.gz
+      path: /juno/work/ci/argos-test/data/fastq/DU874145-N/DU874145-N_IGO_00000_TEST_L001_R1_001.fastq.gz
     R2:
     - class: File
-      path: /juno/work/ci/roslin-test/data/fastq/DU874145-N/DU874145-N_IGO_00000_TEST_L001_R2_001.fastq.gz
+      path: /juno/work/ci/argos-test/data/fastq/DU874145-N/DU874145-N_IGO_00000_TEST_L001_R2_001.fastq.gz
     RG_ID:
     - bar_normal_1-bar_normalPE
     adapter: AGATCGGAAGAGCACACGTCTGAACTCCAGTCACATGAGCATCTCGTATGCCGTCTTCTGCTTG
