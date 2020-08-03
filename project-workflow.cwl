@@ -213,56 +213,14 @@ outputs:
     outputSource: pair_process/mutect_norm_vcf
     secondaryFiles:
       - .tbi
-  # facets
-  facets_png:
-    type:
-      type: array
-      items:
-        type: array
-        items: File
-    outputSource: pair_process/facets_png
-  facets_txt_hisens:
-    type:
-      type: array
-      items: File
-    outputSource: pair_process/facets_txt_hisens
-  facets_txt_purity:
-    type:
-      type: array
-      items: File
-    outputSource: pair_process/facets_txt_purity
-  facets_out:
-    type:
-      type: array
-      items:
-        type: array
-        items: File
-    outputSource: pair_process/facets_out
-  facets_rdata:
-    type:
-      type: array
-      items:
-        type: array
-        items: File
-    outputSource: pair_process/facets_rdata
-  facets_seg:
-    type:
-      type: array
-      items:
-        type: array
-        items: File
-    outputSource: pair_process/facets_seg
-  facets_counts:
-    type:
-      type: array
-      items: File
-    outputSource: pair_process/facets_counts
-
+  # snp_pileup
+  snp_pileup:
+    type: File[]
+    outputSource: pair_process/snp_pileup
   # maf
   maf:
     type: File[]
     outputSource: pair_process/maf
-
   # qc
   qc_pdf:
     type: File

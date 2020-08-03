@@ -12,7 +12,6 @@ requirements:
 inputs:
     tumor_bam: File
     normal_bam: File
-    genome: string
     bed: File
     normal_sample_name: string
     tumor_sample_name: string
@@ -38,8 +37,6 @@ inputs:
           - .sa
           - .fai
           - ^.dict
-    facets_pcval: int
-    facets_cval: int
     facets_snps: File
     complex_nn: float
     complex_tn: float
@@ -52,27 +49,9 @@ outputs:
     annotate_vcf:
         type: File
         outputSource: annotate/annotate_vcf_output_file
-    facets_png:
-        type: File[]
-        outputSource: call_variants/facets_png
-    facets_txt_hisens:
+    snp_pileup:
         type: File
-        outputSource: call_variants/facets_txt_hisens
-    facets_txt_purity:
-        type: File
-        outputSource: call_variants/facets_txt_purity
-    facets_out:
-        type: File[]
-        outputSource: call_variants/facets_out
-    facets_rdata:
-        type: File[]
-        outputSource: call_variants/facets_rdata
-    facets_seg:
-        type: File[]
-        outputSource: call_variants/facets_seg
-    facets_counts:
-        type: File
-        outputSource: call_variants/facets_counts
+        outputSource: call_variants/snp_pileup
     mutect_vcf:
         type: File
         outputSource: call_variants/mutect_vcf
@@ -107,7 +86,6 @@ steps:
         in:
             tumor_bam: tumor_index/bam_indexed
             normal_bam: normal_index/bam_indexed
-            genome: genome
             ref_fasta: ref_fasta
             normal_sample_name: normal_sample_name
             tumor_sample_name: tumor_sample_name
@@ -117,17 +95,14 @@ steps:
             mutect_rf: mutect_rf
             bed: bed
             refseq: refseq
-            facets_pcval: facets_pcval
-            facets_cval: facets_cval
             facets_snps: facets_snps
-        out: [ vardict_vcf, mutect_vcf, mutect_callstats, facets_png, facets_txt_hisens, facets_txt_purity, facets_out, facets_rdata, facets_seg, facets_counts]
+        out: [ vardict_vcf, mutect_vcf, mutect_callstats, snp_pileup]
         run:
             class: Workflow
             id: call-variants
             inputs:
-                tumor_bam: File
-                genome: string
                 normal_bam: File
+                tumor_bam: File
                 ref_fasta: File
                 normal_sample_name: string
                 tumor_sample_name: string
@@ -137,8 +112,6 @@ steps:
                 mutect_rf: string[]
                 bed: File
                 refseq: File #file of refseq genes...
-                facets_pcval: int
-                facets_cval: int
                 facets_snps: File
             outputs:
                 mutect_vcf:
@@ -150,39 +123,25 @@ steps:
                 vardict_vcf:
                     type: File
                     outputSource: vardict/output
-                facets_png:
-                    type: File[]
-                    outputSource: facets/facets_png_output
-                facets_txt_hisens:
+                snp_pileup:
                     type: File
-                    outputSource: facets/facets_txt_output_hisens
-                facets_txt_purity:
-                    type: File
-                    outputSource: facets/facets_txt_output_purity
-                facets_out:
-                    type: File[]
-                    outputSource: facets/facets_out_output
-                facets_rdata:
-                    type: File[]
-                    outputSource: facets/facets_rdata_output
-                facets_seg:
-                    type: File[]
-                    outputSource: facets/facets_seg_output
-                facets_counts:
-                    type: File
-                    outputSource: facets/facets_counts_output
+                    outputSource: snp_pileup/out_file
             steps:
-                facets:
-                    run: facets.cwl
+                snp_pileup:
+                    run: ../../tools/htstools/0.1.1/snp-pileup.cwl
                     in:
                         normal_bam: normal_bam
                         tumor_bam: tumor_bam
-                        tumor_sample_name: tumor_sample_name
-                        genome: genome
-                        facets_pcval: facets_pcval
-                        facets_cval: facets_cval
-                        facets_snps: facets_snps
-                    out: [facets_png_output, facets_txt_output_hisens, facets_txt_output_purity, facets_out_output, facets_rdata_output, facets_seg_output, facets_counts_output]
+                        vcf: facets_snps
+                        output_file:
+                            valueFrom: ${ return inputs.normal_bam.basename.replace(".bam", "") + "__" + inputs.tumor_bam.basename.replace(".bam", "") + ".dat.gz"; }
+                        count_orphans:
+                            valueFrom: ${ return true; }
+                        gzip:
+                            valueFrom: ${ return true; }
+                        pseudo_snps:
+                            default: "50"
+                    out: [out_file]
                 vardict:
                     run: ../../tools/vardict/1.5.1/vardict.cwl
                     in:
