@@ -57,6 +57,4 @@ steps:
       output_directory_name:
         valueFrom: ${ return "maf"; }
     out: [directory]
-
-
-
+    
