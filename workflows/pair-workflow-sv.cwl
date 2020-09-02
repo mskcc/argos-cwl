@@ -101,8 +101,6 @@ inputs:
         pi: string
         pi_email: string
         opt_dup_pix_dist: string
-        facets_pcval: int
-        facets_cval: int
         abra_ram_min: int
         gatk_jar_path: string
   pair:
@@ -222,28 +220,10 @@ outputs:
     outputSource: variant_calling/mutect_norm_vcf
     secondaryFiles:
       - .tbi
-  # facets
-  facets_png:
-    type: File[]
-    outputSource: variant_calling/facets_png
-  facets_txt_hisens:
+  # snp_pileup
+  snp_pileup:
     type: File
-    outputSource: variant_calling/facets_txt_hisens
-  facets_txt_purity:
-    type: File
-    outputSource: variant_calling/facets_txt_purity
-  facets_out:
-    type: File[]
-    outputSource: variant_calling/facets_out
-  facets_rdata:
-    type: File[]
-    outputSource: variant_calling/facets_rdata
-  facets_seg:
-    type: File[]
-    outputSource: variant_calling/facets_seg
-  facets_counts:
-    type: File
-    outputSource: variant_calling/facets_counts
+    outputSource: variant_calling/snp_pileup
   # structural variants
   merged_file_unfiltered:
     type: File
@@ -335,8 +315,6 @@ steps:
             valueFrom: ${ return inputs.bams[1]; }
         tumor_bam:
             valueFrom: ${ return inputs.bams[0]; }
-        genome:
-            valueFrom: ${ return inputs.runparams.genome }
         bed: alignment/bed
         normal_sample_name:
             valueFrom: ${ return inputs.pair[1].ID; }
@@ -353,17 +331,13 @@ steps:
         hotspot_vcf:
             valueFrom: ${ return inputs.db_files.hotspot_vcf }
         ref_fasta: ref_fasta
-        facets_pcval:
-            valueFrom: ${ return inputs.runparams.facets_pcval }
-        facets_cval:
-            valueFrom: ${ return inputs.runparams.facets_cval }
         facets_snps:
             valueFrom: ${ return inputs.db_files.facets_snps }
         complex_tn:
             valueFrom: ${ return inputs.runparams.complex_tn; }
         complex_nn:
             valueFrom: ${ return inputs.runparams.complex_nn; }
-    out: [combine_vcf, annotate_vcf, facets_png, facets_txt_hisens, facets_txt_purity, facets_out, facets_rdata, facets_seg, mutect_vcf, mutect_callstats, vardict_vcf, facets_counts, vardict_norm_vcf, mutect_norm_vcf]
+    out: [combine_vcf, annotate_vcf, snp_pileup, mutect_vcf, mutect_callstats, vardict_vcf, vardict_norm_vcf, mutect_norm_vcf]
 
   structural_variants:
     run: ../modules/pair/structural-variants-pair.cwl

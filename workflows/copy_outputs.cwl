@@ -18,15 +18,6 @@ inputs:
   meta:
     type: File[]
     default: []
-  facets:
-    type:
-      type: array
-      items:
-        type: record
-        fields:
-          normal_id: string
-          tumor_id: string
-          files: File[]
 
 outputs:
 
@@ -42,9 +33,6 @@ outputs:
   meta_files:
     type: File[]
     outputSource: meta
-  facets:
-    type: Directory
-    outputSource: collect_facets/directory
 
 steps:
 
@@ -69,15 +57,4 @@ steps:
       output_directory_name:
         valueFrom: ${ return "maf"; }
     out: [directory]
-  collect_facets:
-    run: ../modules/project/consolidate_pairs.cwl
-    in:
-      pairs: facets
-      output_directory_name:
-        valueFrom: ${ return "facets"; }
-      flatten_directories:
-        valueFrom: ${ return false; }
-    out: [directory]
-
-
-
+    
