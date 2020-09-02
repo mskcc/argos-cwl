@@ -13,18 +13,3 @@ maf:
   path: /juno/work/ci/argos-test/data/PairWorkflowPair0/PairWorkflow/foo_tumor.foo_normal.muts.maf
 - class: File
   path: /juno/work/ci/argos-test/data/PairWorkflowPair1/PairWorkflow/bar_tumor.bar_normal.muts.maf
-facets:
-- normal_id: foo_normal
-  tumor_id: foo_tumor
-  files:
-  - class: File
-    path: /juno/work/ci/argos-test/data/PairWorkflowPair0/PairWorkflow/foo_normal.rg.md.abra.printreads__foo_tumor.rg.md.abra.printreads_hisens.CNCF.png
-  - class: File
-    path: /juno/work/ci/argos-test/data/PairWorkflowPair0/PairWorkflow/foo_normal.rg.md.abra.printreads__foo_tumor.rg.md.abra.printreads_purity.CNCF.png
-- normal_id: bar_normal
-  tumor_id: bar_tumor
-  files:
-  - class: File
-    path: /juno/work/ci/argos-test/data/PairWorkflowPair1/PairWorkflow/bar_normal.rg.md.abra.printreads__bar_tumor.rg.md.abra.printreads_hisens.CNCF.png
-  - class: File
-    path: /juno/work/ci/argos-test/data/PairWorkflowPair1/PairWorkflow/bar_normal.rg.md.abra.printreads__bar_tumor.rg.md.abra.printreads_purity.CNCF.png
