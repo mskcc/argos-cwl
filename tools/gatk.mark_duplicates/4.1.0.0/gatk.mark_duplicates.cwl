@@ -174,8 +174,8 @@ arguments:
     valueFrom: '-Xms$(Math.round(parseInt(runtime.ram)/1910))G -Xmx$(Math.floor(parseInt(runtime.ram)/1048) - 1)G'
 requirements:
   - class: ResourceRequirement
-    ramMin: 32000
-    coresMin: 4
+    ramMin: 42000
+    coresMin: 1
   - class: DockerRequirement
     dockerPull: 'broadinstitute/gatk:4.1.0.0'
   - class: InlineJavascriptRequirement
