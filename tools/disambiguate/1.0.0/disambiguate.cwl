@@ -20,7 +20,7 @@ inputs:
       position: 0
       prefix: '--output-dir'
   - id: aligner
-    type: string
+    type: string?
     inputBinding:
       position: 0
       prefix: '--aligner'
