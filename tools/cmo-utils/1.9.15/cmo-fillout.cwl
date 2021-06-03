@@ -42,6 +42,14 @@ inputs:
     doc: Reference assembly file of BAM files, e.g. hg19/grch37/b37
     inputBinding:
       prefix: --ref-fasta
+    secondaryFiles:
+      - .amb
+      - .ann
+      - .bwt
+      - .pac
+      - .sa
+      - .fai
+      - ^.dict
 
   output:
     type: ['null', string]
