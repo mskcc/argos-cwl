@@ -129,89 +129,90 @@ indels_1000g:
 mouse_fasta:
   class: File
   path: /juno/work/ci/resources/genomes/GRCm38/GRCm38.fasta
-pairs:
-- - CN: MSKCC
-    ID: foo_tumor
-    LB: foo_tumor_1
-    PL: Illumina
-    PU:
-    - foo_tumor_1-foo_tumor
-    R1: []
-    R2: []
-    RG_ID:
-    - foo_tumor_1-foo_tumorPE
-    adapter: AGATCGGAAGAGCACACGTCTGAACTCCAGTCACATGAGCATCTCGTATGCCGTCTTCTGCTTG
-    adapter2: AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT
-    bam: []
-    bwa_output: foo_tumor.bam
-    group: Group_2
-    zR1:
-    - class: File
-      path: /juno/work/ci/argos-test/data/fastq/DU874145-T/DU874145-T_IGO_00000_TEST_L001_R1_001.fastq.gz
-    zR2:
-    - class: File
-      path: /juno/work/ci/argos-test/data/fastq/DU874145-T/DU874145-T_IGO_00000_TEST_L001_R2_001.fastq.gz
-  - CN: MSKCC
-    ID: foo_normal
-    LB: foo_normal_1
-    PL: Illumina
-    PU:
-    - foo_normal_1-foo_normal
-    R1: []
-    R2: []
-    RG_ID:
-    - foo_normal_1-foo_normalPE
-    adapter: AGATCGGAAGAGCACACGTCTGAACTCCAGTCACATGAGCATCTCGTATGCCGTCTTCTGCTTG
-    adapter2: AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT
-    bam:
-    - class: File
-      path: /juno/work/ci/argos-test/data/SampleWorkflowPair0Sample1/SampleWorkflow/foo_normal.rg.md.bam
-    bwa_output: foo_normal.bam
-    group: Group_2
-    zR1: []
-    zR2: []
-- - CN: MSKCC
-    ID: bar_tumor
-    LB: bar_tumor_1
-    PL: Illumina
-    PU:
-    - bar_tumor_1-bar_tumor
-    R1:
-    - class: File
-      path: /juno/work/ci/argos-test/data/fastq/DU874145-T/DU874145-T_IGO_00000_TEST_L001_R1_001.fastq.gz
-    R2:
-    - class: File
-      path: /juno/work/ci/argos-test/data/fastq/DU874145-T/DU874145-T_IGO_00000_TEST_L001_R2_001.fastq.gz
-    RG_ID:
-    - bar_tumor_1-bar_tumorPE
-    adapter: AGATCGGAAGAGCACACGTCTGAACTCCAGTCACATGAGCATCTCGTATGCCGTCTTCTGCTTG
-    adapter2: AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT
-    bam: []
-    bwa_output: bar_tumor.bam
-    group: Group_2
-    zR1: []
-    zR2: []
-  - CN: MSKCC
-    ID: bar_normal
-    LB: bar_normal_1
-    PL: Illumina
-    PU:
-    - bar_normal_1-bar_normal
-    R1:
-    - class: File
-      path: /juno/work/ci/argos-test/data/fastq/DU874145-N/DU874145-N_IGO_00000_TEST_L001_R1_001.fastq.gz
-    R2:
-    - class: File
-      path: /juno/work/ci/argos-test/data/fastq/DU874145-N/DU874145-N_IGO_00000_TEST_L001_R2_001.fastq.gz
-    RG_ID:
-    - bar_normal_1-bar_normalPE
-    adapter: AGATCGGAAGAGCACACGTCTGAACTCCAGTCACATGAGCATCTCGTATGCCGTCTTCTGCTTG
-    adapter2: AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT
-    bam: []
-    bwa_output: bar_normal.bam
-    group: Group_2
-    zR1: []
-    zR2: []
+tumors:
+- CN: MSKCC
+  ID: foo_tumor
+  LB: foo_tumor_1
+  PL: Illumina
+  PU:
+  - foo_tumor_1-foo_tumor
+  R1: []
+  R2: []
+  RG_ID:
+  - foo_tumor_1-foo_tumorPE
+  adapter: AGATCGGAAGAGCACACGTCTGAACTCCAGTCACATGAGCATCTCGTATGCCGTCTTCTGCTTG
+  adapter2: AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT
+  bam: []
+  bwa_output: foo_tumor.bam
+  group: Group_2
+  zR1:
+  - class: File
+    path: /juno/work/ci/argos-test/data/fastq/DU874145-T/DU874145-T_IGO_00000_TEST_L001_R1_001.fastq.gz
+  zR2:
+  - class: File
+    path: /juno/work/ci/argos-test/data/fastq/DU874145-T/DU874145-T_IGO_00000_TEST_L001_R2_001.fastq.gz
+- CN: MSKCC
+  ID: bar_tumor
+  LB: bar_tumor_1
+  PL: Illumina
+  PU:
+  - bar_tumor_1-bar_tumor
+  R1:
+  - class: File
+    path: /juno/work/ci/argos-test/data/fastq/DU874145-T/DU874145-T_IGO_00000_TEST_L001_R1_001.fastq.gz
+  R2:
+  - class: File
+    path: /juno/work/ci/argos-test/data/fastq/DU874145-T/DU874145-T_IGO_00000_TEST_L001_R2_001.fastq.gz
+  RG_ID:
+  - bar_tumor_1-bar_tumorPE
+  adapter: AGATCGGAAGAGCACACGTCTGAACTCCAGTCACATGAGCATCTCGTATGCCGTCTTCTGCTTG
+  adapter2: AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT
+  bam: []
+  bwa_output: bar_tumor.bam
+  group: Group_2
+  zR1: []
+  zR2: []
+normals:
+- CN: MSKCC
+  ID: foo_normal
+  LB: foo_normal_1
+  PL: Illumina
+  PU:
+  - foo_normal_1-foo_normal
+  R1: []
+  R2: []
+  RG_ID:
+  - foo_normal_1-foo_normalPE
+  adapter: AGATCGGAAGAGCACACGTCTGAACTCCAGTCACATGAGCATCTCGTATGCCGTCTTCTGCTTG
+  adapter2: AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT
+  bam:
+  - class: File
+    path: /juno/work/ci/argos-test/data/SampleWorkflowPair0Sample1/SampleWorkflow/foo_normal.rg.md.bam
+  bwa_output: foo_normal.bam
+  group: Group_2
+  zR1: []
+  zR2: []
+- CN: MSKCC
+  ID: bar_normal
+  LB: bar_normal_1
+  PL: Illumina
+  PU:
+  - bar_normal_1-bar_normal
+  R1:
+  - class: File
+    path: /juno/work/ci/argos-test/data/fastq/DU874145-N/DU874145-N_IGO_00000_TEST_L001_R1_001.fastq.gz
+  R2:
+  - class: File
+    path: /juno/work/ci/argos-test/data/fastq/DU874145-N/DU874145-N_IGO_00000_TEST_L001_R2_001.fastq.gz
+  RG_ID:
+  - bar_normal_1-bar_normalPE
+  adapter: AGATCGGAAGAGCACACGTCTGAACTCCAGTCACATGAGCATCTCGTATGCCGTCTTCTGCTTG
+  adapter2: AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT
+  bam: []
+  bwa_output: bar_normal.bam
+  group: Group_2
+  zR1: []
+  zR2: []
 ref_fasta:
   class: File
   path: /juno/work/ci/resources/genomes/GRCh37/fasta/b37.fasta
