@@ -10,26 +10,6 @@ requirements:
 
 inputs:
 
-  pair:
-    type:
-      type: array
-      items:
-        type: record
-        fields:
-          CN: string
-          LB: string
-          ID: string
-          PL: string
-          PU: string[]
-          R1: File[]
-          R2: File[]
-          zR1: File[]
-          zR2: File[]
-          bam: File[]
-          RG_ID: string[]
-          adapter: string
-          adapter2: string
-          bwa_output: string
   genome: string
   intervals: string[]
   opt_dup_pix_dist: string
@@ -76,6 +56,42 @@ inputs:
       - .fai
       - ^.dict
   conpair_markers_bed: string
+  tumor:
+    type:
+      type: record
+      fields:
+        CN: string
+        LB: string
+        ID: string
+        PL: string
+        PU: string[]
+        R1: File[]
+        R2: File[]
+        zR1: File[]
+        zR2: File[]
+        bam: File[]
+        RG_ID: string[]
+        adapter: string
+        adapter2: string
+        bwa_output: string
+  normal:
+    type:
+      type: record
+      fields:
+        CN: string
+        LB: string
+        ID: string
+        PL: string
+        PU: string[]
+        R1: File[]
+        R2: File[]
+        zR1: File[]
+        zR2: File[]
+        bam: File[]
+        RG_ID: string[]
+        adapter: string
+        adapter2: string
+        bwa_output: string
 
 outputs:
 
@@ -148,7 +164,9 @@ steps:
   sample_alignment:
     run: ../../workflows/sample-workflow.cwl
     in:
-      sample: pair
+      sample:
+        source: [tumor, normal]
+        linkMerge: merge_flattened
       genome: genome
       opt_dup_pix_dist: opt_dup_pix_dist
       gatk_jar_path: gatk_jar_path
@@ -164,7 +182,6 @@ steps:
   realignment:
     run: realignment.cwl
     in:
-      pair: pair
       bams: sample_alignment/bam
       hapmap: hapmap
       dbsnp: dbsnp
@@ -175,4 +192,10 @@ steps:
       ref_fasta: ref_fasta
       intervals: intervals
       abra_ram_min: abra_ram_min
+      tumor: tumor
+      normal: normal
+      normal_name:
+        valueFrom: ${ return inputs.normal.ID; }
+      tumor_name:
+        valueFrom: ${ return inputs.tumor.ID; }
     out: [outbams, covint_list, covint_bed, qual_metrics, qual_pdf]

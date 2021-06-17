@@ -103,26 +103,42 @@ inputs:
         opt_dup_pix_dist: string
         abra_ram_min: int
         gatk_jar_path: string
-  pair:
+  tumor:
     type:
-      type: array
-      items:
-        type: record
-        fields:
-          CN: string
-          LB: string
-          ID: string
-          PL: string
-          PU: string[]
-          R1: File[]
-          R2: File[]
-          zR1: File[]
-          zR2: File[]
-          bam: File[]
-          RG_ID: string[]
-          adapter: string
-          adapter2: string
-          bwa_output: string
+      type: record
+      fields:
+        CN: string
+        LB: string
+        ID: string
+        PL: string
+        PU: string[]
+        R1: File[]
+        R2: File[]
+        zR1: File[]
+        zR2: File[]
+        bam: File[]
+        RG_ID: string[]
+        adapter: string
+        adapter2: string
+        bwa_output: string
+  normal:
+    type:
+      type: record
+      fields:
+        CN: string
+        LB: string
+        ID: string
+        PL: string
+        PU: string[]
+        R1: File[]
+        R2: File[]
+        zR1: File[]
+        zR2: File[]
+        bam: File[]
+        RG_ID: string[]
+        adapter: string
+        adapter2: string
+        bwa_output: string
 
 outputs:
 
@@ -273,7 +289,8 @@ steps:
     in:
         runparams: runparams
         db_files: db_files
-        pair: pair
+        tumor: tumor
+        normal: normal
         genome:
           valueFrom: ${ return inputs.runparams.genome }
         intervals:
@@ -310,16 +327,17 @@ steps:
         runparams: runparams
         db_files: db_files
         bams: alignment/bams
-        pair: pair
+        tumor: tumor
+        normal: normal
         normal_bam:
             valueFrom: ${ return inputs.bams[1]; }
         tumor_bam:
             valueFrom: ${ return inputs.bams[0]; }
         bed: alignment/bed
         normal_sample_name:
-            valueFrom: ${ return inputs.pair[1].ID; }
+            valueFrom: ${ return inputs.normal.ID; }
         tumor_sample_name:
-            valueFrom: ${ return inputs.pair[0].ID; }
+            valueFrom: ${ return inputs.tumor.ID; }
         dbsnp: dbsnp
         cosmic: cosmic
         mutect_dcov:
@@ -346,7 +364,8 @@ steps:
         db_files: db_files
         exac_filter: exac_filter
         bams: alignment/bams
-        pair: pair
+        tumor: tumor
+        normal: normal
         normal_bam:
             valueFrom: ${ return inputs.bams[1]; }
         tumor_bam:
@@ -354,9 +373,9 @@ steps:
         genome:
             valueFrom: ${ return inputs.runparams.genome }
         normal_sample_name:
-            valueFrom: ${ return inputs.pair[1].ID; }
+            valueFrom: ${ return inputs.normal.ID; }
         tumor_sample_name:
-            valueFrom: ${ return inputs.pair[0].ID; }
+            valueFrom: ${ return inputs.tumor.ID; }
         ref_fasta: ref_fasta
         vep_path:
             valueFrom: ${ return inputs.db_files.vep_path }
@@ -376,7 +395,8 @@ steps:
         db_files: db_files
         bams: alignment/bams
         annotate_vcf: variant_calling/annotate_vcf
-        pair: pair
+        tumor: tumor
+        normal: normal
         genome:
             valueFrom: ${ return inputs.runparams.genome }
         ref_fasta: ref_fasta
@@ -388,9 +408,9 @@ steps:
         vep_data:
             valueFrom: ${ return inputs.db_files.vep_data }
         normal_sample_name:
-            valueFrom: ${ return inputs.pair[1].ID; }
+            valueFrom: ${ return inputs.normal.ID; }
         tumor_sample_name:
-            valueFrom: ${ return inputs.pair[0].ID; }
+            valueFrom: ${ return inputs.tumor.ID; }
         curated_bams: curated_bams
         hotspot_list:
             valueFrom: ${ return inputs.db_files.hotspot_list }
@@ -399,6 +419,8 @@ steps:
     run: ../tools/format-output/pair-output.cwl
     in:
       runparams: runparams
-      pair: pair
+      pair:
+        source: [tumor, normal]
+        linkMerge: merge_flattened
       bams: alignment/bams
     out: [ genome, assay, pi, pi_email, project_prefix, normal_sample_name, tumor_sample_name, normal_bam, tumor_bam ]

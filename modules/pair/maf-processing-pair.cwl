@@ -11,26 +11,43 @@ requirements:
 
 inputs:
 
-    pair:
+    tumor:
         type:
-          type: array
-          items:
             type: record
             fields:
-              CN: string
-              LB: string
-              ID: string
-              PL: string
-              PU: string[]
-              R1: File[]
-              R2: File[]
-              zR1: File[]
-              zR2: File[]
-              bam: File[]
-              RG_ID: string[]
-              adapter: string
-              adapter2: string
-              bwa_output: string
+                CN: string
+                LB: string
+                ID: string
+                PL: string
+                PU: string[]
+                R1: File[]
+                R2: File[]
+                zR1: File[]
+                zR2: File[]
+                bam: File[]
+                RG_ID: string[]
+                adapter: string
+                adapter2: string
+                bwa_output: string
+    normal:
+        type:
+            type: record
+            fields:
+                CN: string
+                LB: string
+                ID: string
+                PL: string
+                PU: string[]
+                R1: File[]
+                R2: File[]
+                zR1: File[]
+                zR2: File[]
+                bam: File[]
+                RG_ID: string[]
+                adapter: string
+                adapter2: string
+                bwa_output: string
+
     bams:
         type: File[]
         secondaryFiles:
@@ -72,9 +89,10 @@ outputs:
 steps:
     create_pairing_file:
         in:
-            pair: pair
+            tumor: tumor
+            normal: normal
             echoString:
-                valueFrom: ${ return inputs.pair[1].ID + "\t" + inputs.pair[0].ID; }
+                valueFrom: ${ return inputs.normal.ID + "\t" + inputs.tumor.ID; }
             output_filename:
                 valueFrom: ${ return "tn_pairing_file.txt"; }
         out: [ pairfile ]
@@ -89,13 +107,16 @@ steps:
                 DockerRequirement:
                     dockerPull: alpine:3.8
             inputs:
-                pair:
+                tumor:
                     type:
-                        type: array
-                        items:
-                            type: record
-                            fields:
-                                ID: string
+                        type: record
+                        fields:
+                            ID: string
+                normal:
+                    type:
+                        type: record
+                        fields:
+                            ID: string
                 echoString:
                     type: string
                     inputBinding:

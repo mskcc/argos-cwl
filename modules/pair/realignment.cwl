@@ -13,26 +13,8 @@ inputs:
         type: File[]
         secondaryFiles:
             - ^.bai
-    pair:
-        type:
-          type: array
-          items:
-            type: record
-            fields:
-              CN: string
-              LB: string
-              ID: string
-              PL: string
-              PU: string[]
-              R1: File[]
-              R2: File[]
-              zR1: File[]
-              zR2: File[]
-              bam: File[]
-              RG_ID: string[]
-              adapter: string
-              adapter2: string
-              bwa_output: string
+    normal_name: string
+    tumor_name: string
     ref_fasta:
         type: File
         secondaryFiles:
@@ -116,7 +98,6 @@ steps:
     gatk_find_covered_intervals:
         run: ../../tools/gatk.FindCoveredIntervals/3.3-0/gatk.FindCoveredIntervals.cwl
         in:
-            pair: pair
             intervals_list: intervals
             reference_sequence: ref_fasta
             coverage_threshold:
@@ -132,9 +113,10 @@ steps:
     combine_intervals:
         in:
             files: gatk_find_covered_intervals/fci_list
-            pair: pair
+            normal_name: normal_name
+            tumor_name: tumor_name
             output_filename:
-                valueFrom: ${ return inputs.pair[0].ID + "." + inputs.pair[1].ID + ".fci.list"; }
+                valueFrom: ${ return inputs.tumor_name + "." + inputs.normal_name + ".fci.list"; }
         out: [mergedfile]
         run:
             class: CommandLineTool
