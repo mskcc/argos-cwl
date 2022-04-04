@@ -2,6 +2,13 @@
 class: CommandLineTool
 cwlVersion: v1.0
 id: unpack-bam
+
+#
+# NDS 2021-06-14
+# See
+#   https://github.com/mskcc/roslin-variant/blob/2.4.x/setup/bin/unpack_bam.pl
+# for source to script
+#
 baseCommand:
   - perl
   - /opt/unpack_bam.pl
