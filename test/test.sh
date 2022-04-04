@@ -6,7 +6,7 @@ PROCESS_LIST=()
 run_test() {
 	mkdir -p ${1}/${2}/work
 	mkdir -p ${1}/${2}/out
-	cwltoil --singularity --logFile ${1}/${2}/toil_log.log --batchSystem lsf --disable-user-provenance --disable-host-provenance --debug --clean never --disableCaching --preserve-environment PATH TMPDIR TOIL_LSF_ARGS SINGULARITY_PULLDIR SINGULARITY_CACHEDIR PWD --defaultMemory 8G --maxCores 16 --maxDisk 128G --maxMemory 256G --not-strict --realTimeLogging --jobStore ${1}/${2}/jobstore --tmpdir-prefix /scratch --workDir ${1}/${2}/work --outdir ${1}/${2}/out --maxLocalJobs 500 ${3} ${4} &
+	toil-cwl-runner --singularity --logFile ${1}/${2}/toil_log.log --coalesceStatusCalls --debug --clean never --disableCaching --batchSystem lsf --doubleMem  --disable-user-provenance --disable-host-provenance --preserve-environment PATH TMPDIR TOIL_LSF_ARGS SINGULARITY_PULLDIR SINGULARITY_CACHEDIR PWD SINGULARITY_DOCKER_USERNAME SINGULARITY_DOCKER_PASSWORD SINGULARITYENV_LC_ALL --defaultMemory 8G --maxCores 16 --maxDisk 128G --maxMemory 256G --not-strict --realTimeLogging  --jobStore ${1}/${2}/jobstore --tmpdir-prefix /scratch --workDir ${1}/${2}/work --outdir ${1}/${2}/out --maxLocalJobs 500 ${3} ${4} &
 	PROCESS_LIST+=($!)
 }
 
