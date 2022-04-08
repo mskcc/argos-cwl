@@ -283,7 +283,6 @@ steps:
       tumor_bams: pair_process/tumor_bam
       normal_sample_names: pair_process/normal_sample_name
       tumor_sample_names: pair_process/tumor_sample_name
-      project_prefix_list: pair_process/project_prefix
       genome_list: pair_process/genome
       assay_list: pair_process/assay
       pi_list: pair_process/pi
