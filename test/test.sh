@@ -17,7 +17,7 @@ run_test $1 sv ../project-workflow-sv.cwl inputs.yaml
 
 # Test the non SV cwl
 
-run_test $1 non_sv ../project-workflow.cwl inputs.yaml
+# run_test $1 non_sv ../project-workflow.cwl inputs.yaml
 
 # Test the copy outputs cwl
 
