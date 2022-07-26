@@ -15,6 +15,7 @@ inputs:
   vcf: File[]
   bam: File[]
   maf: File[]
+  pileup: File[]
   meta:
     type: File[]
     default: []
@@ -30,6 +31,9 @@ outputs:
   maf_dir:
     type: Directory
     outputSource: collect_maf/directory
+  pileup_dir:
+    type: Directory
+    outputSource: collect_pileup/directory
   meta_files:
     type: File[]
     outputSource: meta
@@ -56,5 +60,12 @@ steps:
       files: maf
       output_directory_name:
         valueFrom: ${ return "maf"; }
+    out: [directory]
+  collect_pileup:
+    run: ../tools/consolidate-files/consolidate-files.cwl
+    in:
+      files: pileup
+      output_directory_name:
+        valueFrom: ${ return "pileup"; }
     out: [directory]
     
