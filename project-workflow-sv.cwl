@@ -105,28 +105,46 @@ inputs:
         abra_ram_min: int
         scripts_bin: string
         gatk_jar_path: string
-  pairs:
+  tumors:
     type:
       type: array
       items:
-        type: array
-        items:
-          type: record
-          fields:
-            CN: string
-            LB: string
-            ID: string
-            PL: string
-            PU: string[]
-            R1: File[]
-            R2: File[]
-            zR1: File[]
-            zR2: File[]
-            bam: File[]
-            RG_ID: string[]
-            adapter: string
-            adapter2: string
-            bwa_output: string
+        type: record
+        fields:
+          CN: string
+          LB: string
+          ID: string
+          PL: string
+          PU: string[]
+          R1: File[]
+          R2: File[]
+          zR1: File[]
+          zR2: File[]
+          bam: File[]
+          RG_ID: string[]
+          adapter: string
+          adapter2: string
+          bwa_output: string
+  normals:
+    type:
+      type: array
+      items:
+        type: record
+        fields:
+          CN: string
+          LB: string
+          ID: string
+          PL: string
+          PU: string[]
+          R1: File[]
+          R2: File[]
+          zR1: File[]
+          zR2: File[]
+          bam: File[]
+          RG_ID: string[]
+          adapter: string
+          adapter2: string
+          bwa_output: string
 
 outputs:
 
@@ -257,11 +275,12 @@ steps:
       exac_filter: exac_filter
       curated_bams: curated_bams
       cosmic: cosmic
-      pair: pairs
+      tumor: tumors
+      normal: normals
       ref_fasta: ref_fasta
       mouse_fasta: mouse_fasta
     out: [normal_bam,tumor_bam,clstats1,clstats2,md_metrics,as_metrics,hs_metrics,insert_metrics,insert_pdf,per_target_coverage,qual_metrics,qual_pdf,doc_basecounts,gcbias_pdf,gcbias_metrics,gcbias_summary,conpair_pileups,mutect_vcf,mutect_callstats,vardict_vcf,combine_vcf,annotate_vcf,vardict_norm_vcf,mutect_norm_vcf,snp_pileup,merged_file_unfiltered,merged_file,maf_file,portal_file,maf,genome,assay,pi,pi_email,project_prefix,normal_sample_name,tumor_sample_name]
-    scatter: [pair]
+    scatter: [tumor, normal]
     scatterMethod: dotproduct
 
   generate_qc:

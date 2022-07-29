@@ -36,7 +36,6 @@ doc: |
   None
 
 inputs:
-
   analysis_type:
     type:
       - 'null'
