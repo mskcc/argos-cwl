@@ -333,7 +333,7 @@ steps:
             valueFrom: ${ return inputs.bams[1]; }
         tumor_bam:
             valueFrom: ${ return inputs.bams[0]; }
-        bed: alignment/bed
+        bed:  { class: File, path: "/juno/work/ci/ops/10439_H/s_C_4V5TAA_P003_d02.FROZENPOOLEDNORMAL_IMPACT-Heme_v2_V1.fci.FixedCIGAR.bed" }
         normal_sample_name:
             valueFrom: ${ return inputs.normal.ID; }
         tumor_sample_name:
