@@ -19,12 +19,6 @@ doc: |
   None
 
 inputs:
-  t:
-    type: ['null', string]
-    default: DEL
-    doc: SV type (DEL, DUP, INV, BND, INS)
-    inputBinding:
-      prefix: --type
 
   f:
     type: ['null', string]
