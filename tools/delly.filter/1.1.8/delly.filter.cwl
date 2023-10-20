@@ -3,7 +3,7 @@ cwlVersion: v1.0
 
 class: CommandLineTool
 baseCommand:
-  - /usr/local/bin/delly
+  - /opt/delly/bin/delly
   - filter
 
 id: delly-filter

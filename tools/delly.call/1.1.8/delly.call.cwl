@@ -3,7 +3,7 @@ cwlVersion: v1.0
 
 class: CommandLineTool
 baseCommand:
-  - /usr/local/bin/delly
+  - /opt/delly/bin/delly
   - call
 
 id: delly-call
@@ -19,7 +19,7 @@ requirements:
     ramMin: 8000
     coresMin: 1
   DockerRequirement:
-    dockerPull: mskcc/roslin-variant-delly:0.7.7
+    dockerPull: dellytools/delly:latest
 
 doc: |
   None
@@ -30,7 +30,7 @@ inputs:
     default: DEL
     doc: SV type (DEL, DUP, INV, BND, INS)
     inputBinding:
-      prefix: --type
+      prefix: --svtype
 
   g:
     type: File

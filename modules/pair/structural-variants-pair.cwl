@@ -147,7 +147,7 @@ steps:
                     outputSource: delly_filter/sv_file
             steps:
                 delly_call:
-                    run: ../../tools/delly.call/0.7.7/delly.call.cwl
+                    run: ../../tools/delly.call/1.1.8/delly.call.cwl
                     in:
                         t: delly_type
                         tumor_bam: tumor_bam
@@ -160,7 +160,7 @@ steps:
                             valueFrom: ${ return inputs.tumor_sample_name + "." + inputs.normal_sample_name +"." + inputs.t + ".bcf"; }
                     out: [ sv_file ]
                 delly_filter:
-                    run: ../../tools/delly.filter/0.7.7/delly.filter.cwl
+                    run: ../../tools/delly.filter/1.1.8/delly.filter.cwl
                     in:
                         i: delly_call/sv_file
                         s: pairfile
