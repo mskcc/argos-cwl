@@ -13,7 +13,7 @@ requirements:
     ramMin: 8000
     coresMin: 1
   DockerRequirement:
-    dockerPull: mskcc/roslin-variant-delly:0.7.7
+    dockerPull: dellytools/delly:latest
 
 doc: |
   None
