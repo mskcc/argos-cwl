@@ -1,30 +1,34 @@
 #!/usr/bin/env cwl-runner
 cwlVersion: v1.0
-class: CommandLineTool
-baseCommand:
-- cat
-- $(inputs.files)
-- |
-- sort
-- -k2,2V
-- -k3,3n
-- > 
-- vardict_concat.prevcf
+class: Workflow
 id: vardict_concat
 
 requirements:
-  InlineJavascriptRequirement: {}
-  ResourceRequirement:
-    coresMin: 4
-    ramMin: 24000
-  DockerRequirement:
-    dockerPull: broadinstitute_gatk:4.1.0.0
+    MultipleInputFeatureRequirement: {}
+    ScatterFeatureRequirement: {}
+    SubworkflowFeatureRequirement: {}
+    InlineJavascriptRequirement: {}
+    StepInputExpressionRequirement: {} 
 
 inputs:
   files: File[]
-
-outputs:
-  output_concat_var:
+outputs: 
+  concat_file:
     type: File
-    outputBinding:
-      glob: vardict_concat.prevcf
+    outputSource: cat_files/concat_file
+
+steps:
+
+  cat_files:
+    in:
+      files: files
+    out: [ concat_file ]
+    run:
+      class: CommandLineTool
+      baseCommand: [ 'cat' ]
+      inputs:
+        files:
+          type: File[] 
+      outputs: 
+        concat_file:
+          type: stdout
