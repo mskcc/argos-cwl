@@ -108,6 +108,11 @@ outputs:
     type: File
     outputSource: vardict/output
 steps:
+  split_vardict:
+    run: ./vardict_split.cwl
+    in:
+      bedfile: bedfile
+    output: [output]
   vardict:
     run: ./vardict_core.cwl
     in:
@@ -134,7 +139,7 @@ steps:
       a: a
       b: b
       b2: b2
-      bedfile: bedfile
+      bedfile: split_vardict/bedfile
       c: c
       d: d
       e: e
