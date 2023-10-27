@@ -112,7 +112,7 @@ steps:
     run: ./vardict_split.cwl
     in:
       bedfile: bedfile
-    output: [output]
+    out: [output]
   vardict:
     run: ./vardict_core.cwl
     in:
