@@ -9,7 +9,7 @@ arguments:
 - position: 0
   valueFrom: ${ return inputs.bedfile }
 - position: 1
-  prefix: -d
+  valueFrom: ${ return "-d" }
 - position: 2
   prefix: -n
   valueFrom: ${ return "10" }
@@ -22,7 +22,7 @@ requirements:
     coresMin: 2
     ramMin: 1000
   DockerRequirement:
-    dockerPull: mskcc/broadinstitute_gatk:4.1.0.0.sif
+    dockerPull: broadinstitute_gatk:4.1.0.0
 
 inputs:
   bedfile: File
