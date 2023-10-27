@@ -22,7 +22,7 @@ requirements:
     coresMin: 2
     ramMin: 1000
   DockerRequirement:
-    dockerPull: mskcc/roslin-variant-vardict:1.5.1
+    dockerPull: mskcc/broadinstitute_gatk:4.1.0.0.sif
 
 inputs:
   bedfile: File
