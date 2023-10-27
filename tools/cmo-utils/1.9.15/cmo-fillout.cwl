@@ -2,7 +2,7 @@
 cwlVersion: v1.0
 
 class: CommandLineTool
-baseCommand: [cmo_fillout]
+baseCommand: [ "sh", "run.sh" ]
 id: cmo-fillout
 
 requirements:
@@ -12,6 +12,20 @@ requirements:
     coresMin: 4
   DockerRequirement:
     dockerPull: mskcc/roslin-variant-cmo-utils:1.9.15
+  # Fix for error;
+  # FATAL:   exec /usr/bin/cmo_fillout failed: fork/exec /usr/bin/cmo_fillout: argument list too long
+  # shorten the arg list run by singularity exec by embedding it in a shell script
+  # from this:
+  # cmo_fillout --n_threads 4 --bams 1.bam 2.bam ... --maf hotspot-list-union-v1-v2.maf --format 1 --ref-fasta b37.fasta
+  # to this:
+  # sh run.sh --maf hotspot-list-union-v1-v2.maf --format 1 --ref-fasta b37.fasta
+  InitialWorkDirRequirement:
+    listing:
+      - entryname: run.sh
+        entry: |-
+          set -eu
+          bams='${ return inputs.bams.map((a) => a.path).join(' '); }'
+          cmo_fillout --bams \${bams} $@
 
 doc: |
   Fillout allele counts for a MAF file using GetBaseCountsMultiSample on BAMs
@@ -34,8 +48,6 @@ inputs:
       type: array
       items: [string, File]
     doc: BAM files to fillout with
-    inputBinding:
-      prefix: --bams
 
   ref_fasta:
     type: File
