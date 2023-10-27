@@ -8,11 +8,11 @@ requirements:
     ScatterFeatureRequirement: {}
     SubworkflowFeatureRequirement: {}
     InlineJavascriptRequirement: {}
-    StepInputExpressionRequirement: {} 
+    StepInputExpressionRequirement: {}
 
 inputs:
   files: File[]
-outputs: 
+outputs:
   concat_file:
     type: File
     outputSource: cat_files/concat_file
@@ -26,9 +26,12 @@ steps:
     run:
       class: CommandLineTool
       baseCommand: [ 'cat' ]
+      stdout: output.txt
       inputs:
         files:
-          type: File[] 
-      outputs: 
+          type: File[]
+          inputBinding:
+            position: 1
+      outputs:
         concat_file:
           type: stdout
