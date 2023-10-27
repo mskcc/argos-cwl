@@ -105,7 +105,7 @@ inputs:
     type: string?
 outputs:
   output:
-    type: File
+    type: File[]
     outputSource: vardict/output
 steps:
   split_vardict:
