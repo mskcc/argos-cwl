@@ -2,7 +2,7 @@
 cwlVersion: v1.0
 class: Workflow
 id: vardict
-label: vardict
+label: vardict_core
 requirements:
     MultipleInputFeatureRequirement: {}
     ScatterFeatureRequirement: {}
@@ -106,7 +106,7 @@ inputs:
 outputs:
   output:
     type: File
-    outputSource: vardict_1/output
+    outputSource: testsomatic/output_var
 steps:
   vardict:
     run: ./vardict_app.cwl
@@ -162,12 +162,3 @@ steps:
     in:
       input_vardict: vardict/output
     out: [output_var]
-  vardict_1:
-    run: ./var_to_vcf.cwl
-    in:
-      N: N
-      N2: N2
-      f: f_1
-      vcf: vcf
-      input_vcf: testsomatic/output_var
-    out: [output]
