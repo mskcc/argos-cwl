@@ -106,7 +106,7 @@ inputs:
 outputs:
   output:
     type: File
-    outputSource: vardict/output_var
+    outputSource: vardict/output
 steps:
   vardict:
     run: ./vardict_core.cwl
