@@ -12,7 +12,7 @@ arguments:
   valueFrom: ${ return "-d" }
 - position: 2
   prefix: -n
-  valueFrom: ${ return "10" }
+  valueFrom: ${ return "l/10" }
 - position: 3
   valueFrom: ${ return "--additional-suffix=.bed" }
 
