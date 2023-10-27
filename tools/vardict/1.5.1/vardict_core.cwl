@@ -109,7 +109,7 @@ outputs:
     outputSource: vardict_1/output
 steps:
   vardict:
-    run: ./vardict_core.cwl
+    run: ./vardict_app.cwl
     in:
       B: B
       C: C
@@ -156,14 +156,12 @@ steps:
         valueFrom: ${ return inputs.vcf.replace(".vcf", "_tmp.vcf") }
       x: x
       z: z
-    scatter: [bedfile]
-    scatterMethod: dotproduct
+    out: [output]
+  testsomatic:
+    run: ./testsomatic.cwl
+    in:
+      input_vardict: vardict/output
     out: [output_var]
-  concat_var:
-    run: ./concat_var.cwl
-    in: 
-      output_var: vardict/output_var
-    out: [output_concat_var]
   vardict_1:
     run: ./var_to_vcf.cwl
     in:
@@ -171,5 +169,5 @@ steps:
       N2: N2
       f: f_1
       vcf: vcf
-      input_vcf: concat_var/output_concat_var
+      input_vcf: testsomatic/output_var
     out: [output]
