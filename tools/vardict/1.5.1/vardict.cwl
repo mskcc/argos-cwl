@@ -106,7 +106,7 @@ inputs:
 outputs:
   output:
     type: File[]
-    outputSource: vardict/output
+    outputSource: concat_vardict/output_concat_var
 steps:
   split_vardict:
     run: ./vardict_split.cwl
@@ -165,3 +165,9 @@ steps:
     scatter: [bedfile]
     scatterMethod: dotproduct
     out: [output]
+
+  concat_vardict:
+    run: ./vardict_concat.cwl
+    in:
+      files: vardict/output
+    out: [output_concat_var]
