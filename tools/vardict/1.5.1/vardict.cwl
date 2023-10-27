@@ -106,7 +106,7 @@ inputs:
 outputs:
   output:
     type: File[]
-    outputSource: concat_vardict/output_concat_var
+    outputSource: vardict_1/output
 steps:
   split_vardict:
     run: ./vardict_split.cwl
@@ -171,3 +171,13 @@ steps:
     in:
       files: vardict/output
     out: [output_concat_var]
+
+  vardict_1:
+    run: ./var_to_vcf.cwl
+    in:
+      N: N
+      N2: N2
+      f: f_1
+      vcf: vcf
+      input_vcf: concat_vardict/output_concat_var
+    out: [output]
