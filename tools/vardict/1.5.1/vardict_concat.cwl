@@ -35,3 +35,20 @@ steps:
       outputs:
         concat_file:
           type: stdout
+
+    sort_file:
+      in:
+        cat_file: cat_files/concat_file
+      out: [ sorted_file ]
+      run:
+        class: CommandLineTool
+        baseCommand: [ 'sort', '-k2,2V', '-k3,3n' ]
+        stdout: sorted_prevcf_file.txt
+        inputs:
+          cat_file:
+            type: File
+            inputBinding:
+              position: 1
+        outputs:
+          sorted_file:
+            type: stdout
