@@ -158,4 +158,4 @@ steps:
       z: z
     scatter: [bedfile]
     scatterMethod: dotproduct
-    out: [output_var]
+    out: [output]
