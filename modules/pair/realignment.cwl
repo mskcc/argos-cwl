@@ -95,8 +95,8 @@ steps:
             output_object['intervals_id'] = intervals_id;
             return output_object;
           }"
-    gatk_find_covered_intervals:
-        run: ../../tools/gatk.FindCoveredIntervals/3.3-0/gatk.FindCoveredIntervals.cwl
+    find_covered_intervals:
+        run: ../../tools/findCoveredIntervals/1.0.1/findCoveredIntervals.cwl
         in:
             intervals_list: intervals
             reference_sequence: ref_fasta
