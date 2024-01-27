@@ -65,7 +65,7 @@ outputs:
         outputSource: parallel_printreads/out
 steps:
     find_covered_intervals:
-        run: ../../tools/findCoveredIntervals/1.0.1/findCoveredIntervals.cwl
+        run: ../../tools/findCoveredIntervals/2.0.1/findCoveredIntervals.cwl
         in:
             reference_sequence: ref_fasta
             coverage_threshold:
