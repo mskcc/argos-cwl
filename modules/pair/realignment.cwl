@@ -47,7 +47,8 @@ inputs:
 outputs:
     covint_list:
         type: File
-        outputSource: combine_intervals/mergedfile
+        #outputSource: combine_intervals/mergedfile - removed as part of scatter/gather refactor
+        outputSource: find_covered_intervals/fci_list
     covint_bed:
         type: File
         outputSource: list2bed/output_file
@@ -63,84 +64,25 @@ outputs:
             - ^.bai
         outputSource: parallel_printreads/out
 steps:
-    split_intervals:
-      in:
-        interval_list: intervals
-      out: [ intervals, intervals_id]
-      run:
-          class: ExpressionTool
-          id: split_intervals
-          requirements:
-              - class: InlineJavascriptRequirement
-          inputs:
-            interval_list: string[]
-          outputs:
-            intervals:
-                type:
-                    type: array
-                    items:
-                        type: array
-                        items: string
-            intervals_id: string[]
-          expression: "${ var intervals = [];
-            var intervals_id = [];
-            var output_object = {};
-            var interval_list = inputs.interval_list;
-            while( interval_list.length > 0 ) {
-                var interval_split = interval_list.splice(0, 10);
-                intervals.push(interval_split);
-                intervals_id.push(interval_split.join('_'));
-            }
-            output_object['intervals'] = intervals;
-            output_object['intervals_id'] = intervals_id;
-            return output_object;
-          }"
     find_covered_intervals:
         run: ../../tools/findCoveredIntervals/1.0.1/findCoveredIntervals.cwl
         in:
-            intervals_list: intervals
             reference_sequence: ref_fasta
             coverage_threshold:
                 valueFrom: ${ return ["3"];}
             minBaseQuality:
                 valueFrom: ${ return ["20"];}
-            intervals: split_intervals/intervals
+            intervals: intervals
             input_file: bams
-            out: split_intervals/intervals_id
-        scatter: [intervals, out]
-        scatterMethod: dotproduct
-        out: [fci_list]
-    combine_intervals:
-        in:
-            files: gatk_find_covered_intervals/fci_list
-            normal_name: normal_name
             tumor_name: tumor_name
-            output_filename:
+            normal_name: normal_name
+            out:
                 valueFrom: ${ return inputs.tumor_name + "." + inputs.normal_name + ".fci.list"; }
-        out: [mergedfile]
-        run:
-            class: CommandLineTool
-            baseCommand: ['cat']
-            id: combine_intervals
-            stdout: $(inputs.output_filename)
-
-            requirements:
-                InlineJavascriptRequirement: {}
-                MultipleInputFeatureRequirement: {}
-
-            inputs:
-                files:
-                    type: File[]
-                    inputBinding:
-                        position: 1
-                output_filename: string
-            outputs:
-                mergedfile:
-                    type: stdout
+        out: [fci_list]
     list2bed:
         run: ../../tools/list2bed/1.0.1/list2bed.cwl
         in:
-            input_file: combine_intervals/mergedfile
+            input_file: find_covered_intervals/fci_list
             output_filename:
                 valueFrom: ${ return inputs.input_file.basename.replace(".list", ".bed"); }
         out: [output_file]
