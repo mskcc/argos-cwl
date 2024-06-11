@@ -9,7 +9,7 @@ requirements:
   InlineJavascriptRequirement: {}
   ResourceRequirement:
     ramMin: 48000
-    coresMin: 4
+    coresMin: 6
   DockerRequirement:
     dockerPull: mskcc/roslin-variant-cmo-utils:1.9.15
 

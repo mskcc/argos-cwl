@@ -24,7 +24,7 @@ requirements:
   InlineJavascriptRequirement: {}
   ResourceRequirement:
     ramMin: 16000
-    coresMin: 2
+    coresMin: 4
 
 inputs:
   - id: input_bam

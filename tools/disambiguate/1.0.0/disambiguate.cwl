@@ -59,7 +59,7 @@ outputs:
 requirements:
   - class: ResourceRequirement
     ramMin: 32000
-    coresMin: 4
+    coresMin: 6
   - class: DockerRequirement
     dockerPull: 'mskcc/disambiguate:1.0.0'
   - class: InlineJavascriptRequirement

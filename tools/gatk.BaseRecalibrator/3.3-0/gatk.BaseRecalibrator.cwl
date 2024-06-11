@@ -33,7 +33,7 @@ requirements:
   InlineJavascriptRequirement: {}
   ResourceRequirement:
     ramMin: 24000
-    coresMin: 4
+    coresMin: 6
   DockerRequirement:
     dockerPull: mskcc/roslin-variant-gatk:3.3-0
 

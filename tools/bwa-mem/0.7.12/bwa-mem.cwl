@@ -11,7 +11,7 @@ requirements:
   InlineJavascriptRequirement: {}
   ResourceRequirement:
     ramMin: 32000
-    coresMin: 4
+    coresMin: 6
   DockerRequirement:
     dockerPull: mskcc/bwa_mem:0.7.12
 

@@ -17,7 +17,7 @@ requirements:
   InlineJavascriptRequirement: {}
   ResourceRequirement:
     ramMin: 8000
-    coresMin: 2
+    coresMin: 4
   DockerRequirement:
     dockerPull: mskcc/roslin-variant-vcf2maf:1.6.17
 
