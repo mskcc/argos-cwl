@@ -12,7 +12,7 @@ requirements:
   InlineJavascriptRequirement: {}
   ResourceRequirement:
     ramMin: 36000
-    coresMin: 1
+    coresMin: 3
   DockerRequirement:
     dockerPull: mskcc/roslin-variant-ngs-filters:1.4
 

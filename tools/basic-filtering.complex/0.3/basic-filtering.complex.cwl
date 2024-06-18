@@ -13,7 +13,7 @@ requirements:
   InlineJavascriptRequirement: {}
   ResourceRequirement:
     ramMin: 16000
-    coresMin: 2
+    coresMin: 4
   DockerRequirement:
     dockerPull: mskcc/roslin-variant-basic-filtering:0.3
 

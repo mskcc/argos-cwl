@@ -11,7 +11,7 @@ requirements:
     listing: [ $(inputs.input_vcf) ]
   ResourceRequirement:
     ramMin: 80000
-    coresMin: 1
+    coresMin: 3
   DockerRequirement:
     dockerPull: mskcc/roslin-variant-htslib:1.9
 

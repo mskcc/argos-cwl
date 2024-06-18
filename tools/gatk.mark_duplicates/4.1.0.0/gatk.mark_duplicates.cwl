@@ -175,7 +175,7 @@ arguments:
 requirements:
   - class: ResourceRequirement
     ramMin: 42000
-    coresMin: 1
+    coresMin: 3
   - class: DockerRequirement
     dockerPull: 'broadinstitute/gatk:4.1.0.0'
   - class: InlineJavascriptRequirement

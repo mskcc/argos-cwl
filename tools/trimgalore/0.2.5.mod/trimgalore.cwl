@@ -10,7 +10,7 @@ requirements:
   - var getBaseName = function(inputFile) { return inputFile.basename; };
 - class: ResourceRequirement
   ramMin: 12000
-  coresMin: 1
+  coresMin: 3
 - class: DockerRequirement
   dockerPull: mskcc/roslin-variant-trimgalore:0.2.5.mod
 

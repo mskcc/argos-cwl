@@ -418,7 +418,7 @@ arguments:
 requirements:
   - class: ResourceRequirement
     ramMin: 32000
-    coresMin: 4
+    coresMin: 6
   - class: DockerRequirement
     dockerPull: mskcc/roslin-variant-samtools:1.3.1
   - class: InlineJavascriptRequirement
