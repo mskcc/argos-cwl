@@ -9,7 +9,7 @@ id: testsomatic
 requirements:
   InlineJavascriptRequirement: {}
   ResourceRequirement:
-    coresMin: 2
+    coresMin: 4
     ramMin: 12000
   DockerRequirement:
     dockerPull: mskcc/roslin-variant-vardict:1.5.1
