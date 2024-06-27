@@ -27,7 +27,7 @@ requirements:
   InlineJavascriptRequirement: {}
   ResourceRequirement:
     ramMin: $(inputs.abra_ram_min)
-    coresMin: 18
+    coresMin: 16
   DockerRequirement:
     dockerPull: mskcc/roslin-variant-abra:2.17
 
