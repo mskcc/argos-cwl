@@ -36,7 +36,7 @@ requirements:
     ramMin: 16000
     coresMin: 5
   DockerRequirement:
-    dockerPull: mskcc/roslin-variant-picard:2.9
+    dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/roslin-variant-picard:2.9
 
 
 doc: |

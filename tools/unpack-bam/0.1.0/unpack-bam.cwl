@@ -20,7 +20,7 @@ arguments:
 
 requirements:
   DockerRequirement:
-    dockerPull: 'mskcc/unpack_bam:0.1.0'
+    dockerPull: '058264265624.dkr.ecr.us-east-1.amazonaws.com/unpack_bam:0.1.0'
   InlineJavascriptRequirement: {}
   ResourceRequirement:
     ramMin: 16000

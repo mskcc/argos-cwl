@@ -14,7 +14,7 @@ requirements:
     ramMin: 8000
     coresMin: 3
   DockerRequirement:
-    dockerPull: mskcc/roslin-variant-delly:0.7.7
+    dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/roslin-variant-delly:0.7.7
 
 doc: |
   None

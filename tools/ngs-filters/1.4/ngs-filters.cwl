@@ -14,7 +14,7 @@ requirements:
     ramMin: 36000
     coresMin: 3
   DockerRequirement:
-    dockerPull: mskcc/roslin-variant-ngs-filters:1.4
+    dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/roslin-variant-ngs-filters:1.4
 
 doc: |
   This tool flags false-positive somatic calls in a given MAF file

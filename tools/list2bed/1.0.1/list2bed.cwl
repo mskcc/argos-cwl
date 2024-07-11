@@ -13,7 +13,7 @@ requirements:
     ramMin: 2000
     coresMin: 3
   DockerRequirement:
-    dockerPull: mskcc/roslin-variant-list2bed:1.0.1
+    dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/roslin-variant-list2bed:1.0.1
 
 doc: |
   Convert a Picard interval list file to a UCSC BED format

@@ -19,7 +19,7 @@ requirements:
     ramMin: 8000
     coresMin: 4
   DockerRequirement:
-    dockerPull: mskcc/roslin-variant-vcf2maf:1.6.17
+    dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/roslin-variant-vcf2maf:1.6.17
 
 doc: |
   None

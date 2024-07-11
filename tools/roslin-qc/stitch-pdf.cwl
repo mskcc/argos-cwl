@@ -9,7 +9,7 @@ requirements:
     ramMin: 8000
     coresMin: 3
   DockerRequirement:
-    dockerPull: mskcc/roslin-variant-roslin-qc:0.6.4
+    dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/roslin-variant-roslin-qc:0.6.4
 
 class: CommandLineTool
 baseCommand:
@@ -69,4 +69,3 @@ outputs:
     type: File
     outputBinding:
       glob: "*.pdf"
-

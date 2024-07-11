@@ -13,7 +13,7 @@ requirements:
     ramMin: 16000
     coresMin: 3
   DockerRequirement:
-    dockerPull: mskcc/roslin-variant-conpair:0.3.3
+    dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/roslin-variant-conpair:0.3.3
 
 doc: |
   None

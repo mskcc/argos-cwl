@@ -61,5 +61,5 @@ requirements:
     ramMin: 32000
     coresMin: 6
   - class: DockerRequirement
-    dockerPull: 'mskcc/disambiguate:1.0.0'
+    dockerPull: '058264265624.dkr.ecr.us-east-1.amazonaws.com/disambiguate:1.0.0'
   - class: InlineJavascriptRequirement
