@@ -12,7 +12,7 @@ requirements:
     ramMin: 8000
     coresMin: 3
   DockerRequirement:
-    dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/roslin-variant-htstools:0.1.1
+    dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/roslin-variant-htstools:0.1.1.bash
 
 
 doc: |
