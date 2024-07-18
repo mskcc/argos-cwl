@@ -15,7 +15,7 @@ requirements:
     ramMin: 16000
     coresMin: 4
   DockerRequirement:
-    dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/roslin-variant-basic-filtering:0.3
+    dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/roslin-variant-basic-filtering:0.3.bash
 
 doc: |
   Given a VCF listing somatic events and a TN-pair of BAMS, apply a complex filter based on indels/soft-clipping noise
