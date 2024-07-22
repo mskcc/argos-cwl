@@ -447,11 +447,5 @@ steps:
       pair:
         source: [tumor, normal]
         linkMerge: merge_flattened
-      bam_normal:
-        valueFrom: ${ return inputs.normal.bam[0]; }
-      bam_tumor:
-        valueFrom: ${ return inputs.tumor.bam[0]; }
-      bams: 
-         source: [ ${ return inputs.bam_normal; }, ${ return inputs.bam_tumor; } ]
-         linkMerge: merge_flattened
+      bams: parallel_printreads/out
     out: [ genome, assay, pi, pi_email, project_prefix, normal_sample_name, tumor_sample_name, normal_bam, tumor_bam ]
