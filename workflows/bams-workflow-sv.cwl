@@ -241,9 +241,9 @@ steps:
         tumor: tumor
         normal: normal
         bam_tumor:
-            valueFrom: ${ inputs.tumor.bam[0]; }
+            valueFrom: ${ return inputs.tumor.bam[0]; }
         bam_normal:
-            valueFrom: ${ inputs.normal.bam[0]; }
+            valueFrom: ${ return inputs.normal.bam[0]; }
     out: [ bams, bam_tumor, bam_normal ]
     run:
         class: ExpressionTool
