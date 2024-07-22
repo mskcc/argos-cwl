@@ -331,9 +331,9 @@ steps:
         tumor: tumor
         normal: normal
         normal_bam:
-            valueFrom: ${ return inputs.normal.bam; }
+            valueFrom: ${ return inputs.normal.bam[0]; }
         tumor_bam:
-            valueFrom: ${ return inputs.tumor.bam; }
+            valueFrom: ${ return inputs.tumor.bam[0]; }
         genome:
             valueFrom: ${ return inputs.runparams.genome }
         normal_sample_name:
@@ -360,8 +360,12 @@ steps:
         annotate_vcf: variant_calling/annotate_vcf
         tumor: tumor
         normal: normal
+        bam_normal:
+            valueFrom: ${ return inputs.normal.bam[0] }
+        bam_tumor:
+            valueFrom: ${ return { return inputs.tumor.bam }
         bams: 
-            source: [ ${ return inputs.normal.bam }, ${ return inputs.tumor.bam } ]
+            source: [ bam_normal, bam_tumor ]
             linkMerge: merge_flattened
         genome:
             valueFrom: ${ return inputs.runparams.genome }
@@ -388,7 +392,11 @@ steps:
       pair:
         source: [tumor, normal]
         linkMerge: merge_flattened
+      bam_normal:
+        valueFrom: ${ return inputs.normal.bam[0]; }
+      bam_tumor:
+        valueFrom: ${ return inputs.tumor.bam[0]; }
       bams: 
-         source: [ ${ return inputs.normal.bam }, ${ return inputs.tumor.bam } ]
+         source: [ bam_normal, bam_tumor ], 
          linkMerge: merge_flattened
     out: [ genome, assay, pi, pi_email, project_prefix, normal_sample_name, tumor_sample_name, normal_bam, tumor_bam ]
