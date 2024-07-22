@@ -314,7 +314,7 @@ steps:
         bam_tumor:
             valueFrom: ${ return inputs.tumor.bam[0]; }
         bams: 
-            source: [ $(inputs.bam_normal), $(inputs.bam_tumor) ]
+            source: [ $(return inputs.bam_normal), $(return inputs.bam_tumor) ]
             linkMerge: merge_flattened
         genome:
             valueFrom: ${ return inputs.runparams.genome }
@@ -346,6 +346,6 @@ steps:
       bam_tumor:
         valueFrom: ${ return inputs.tumor.bam[0]; }
       bams: 
-         source: [ $(inputs.bam_normal), $(inputs.bam_tumor) ]
+         source: [ $(return inputs.bam_normal), $(return inputs.bam_tumor) ]
          linkMerge: merge_flattened
     out: [ genome, assay, pi, pi_email, project_prefix, normal_sample_name, tumor_sample_name, normal_bam, tumor_bam ]
