@@ -157,6 +157,14 @@ outputs:
       - ^.bai
     outputSource: format_output/tumor_bam
 
+  # qual metrics
+  qual_metrics:
+    type: File[]
+    outputSource: parallel_printreads/qual_metrics
+  qual_pdf:
+    type: File[]
+    outputSource: parallel_printreads/qual_pdf
+
   # vcf
   mutect_vcf:
     type: File
