@@ -361,9 +361,9 @@ steps:
         tumor: tumor
         normal: normal
         bam_normal:
-            valueFrom: ${ return inputs.normal.bam[0] }
+            valueFrom: ${ return inputs.normal.bam[0]; }
         bam_tumor:
-            valueFrom: ${ return { return inputs.tumor.bam }
+            valueFrom: ${ return inputs.tumor.bam[0]; }
         bams: 
             source: [ bam_normal, bam_tumor ]
             linkMerge: merge_flattened
