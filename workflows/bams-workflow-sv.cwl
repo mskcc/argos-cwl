@@ -236,18 +236,129 @@ outputs:
 
 steps:
 
+  create_bam_array:
+    in:
+        tumor: tumor
+        normal: normal
+        bam_tumor:
+            valueFrom: ${ inputs.tumor.bam[0]; }
+        bam_normal:
+            valueFrom: ${ inputs.normal.bam[0]; }
+    out: [ bams, bam_tumor, bam_normal ]
+    run:
+        class: ExpressionTool
+        id: create-bam-array
+        requirements:
+            - class: InlineJavascriptRequirement
+        inputs:
+            bam_tumor: File
+            bam_normal: File
+        outputs:
+            bams:
+                type: File[]
+            bam_tumor: File
+            bam_normal: File
+        expression: "${
+            var project_object = {};
+            project_object['bams'] = [ inputs.bam_tumor, inputs.bam_normal ];
+            project_object['bam_tumor'] = inputs.bam_tumor;
+            project_object['bam_normal'] = inputs.bam_normal; 
+            return project_object;
+        }"
+            
+  index_bams:
+      run: ../tools/cmo-utils/1.9.15/cmo-index.cwl
+      in:
+          bam: create_bam_array/bams
+      scatter: [bam]
+      scatterMethod: dotproduct
+      out: [bam_indexed]
+
+  gatk_base_recalibrator:
+      run: ../tools/gatk.BaseRecalibrator/3.3-0/gatk.BaseRecalibrator.cwl
+      in:
+          reference_sequence: ref_fasta
+          input_file: index_bams/bam_indexed
+          dbsnp: dbsnp
+          hapmap: hapmap
+          indels_1000g: indels_1000g
+          snps_1000g: snps_1000g
+          knownSites:
+              valueFrom: ${return [inputs.dbsnp,inputs.hapmap, inputs.indels_1000g, inputs.snps_1000g]}
+          covariate: covariates
+          out:
+              valueFrom: ${ return "recal.matrix"; }
+          read_filter:
+            valueFrom: ${ return ["BadCigar"]; }
+      out: [recal_matrix]
+
+  parallel_printreads:
+      in:
+          input_file: index_bams/bam_indexed
+          reference_sequence: ref_fasta
+          BQSR: gatk_base_recalibrator/recal_matrix
+      out: [out,qual_metrics,qual_pdf]
+      scatter: [input_file]
+      scatterMethod: dotproduct
+      run:
+          class: Workflow
+          id: parallel_printreads
+          inputs:
+              input_file: File
+              reference_sequence: File
+              BQSR: File
+          outputs:
+              out:
+                  type: File
+                  secondaryFiles:
+                      - ^.bai
+                  outputSource: gatk_print_reads/out_bam
+              qual_metrics:
+                  type: File
+                  outputSource: quality_metrics/qual_file
+              qual_pdf:
+                  type: File
+                  outputSource: quality_metrics/qual_hist
+          steps:
+              gatk_print_reads:
+                  run: ../../tools/gatk.PrintReads/3.3-0/gatk.PrintReads.cwl
+                  in:
+                      reference_sequence: reference_sequence
+                      BQSR: BQSR
+                      input_file: input_file
+                      num_cpu_threads_per_data_thread:
+                          valueFrom: ${ return "5"; }
+                      emit_original_quals:
+                          valueFrom: ${ return true; }
+                      baq:
+                          valueFrom: ${ return ['RECALCULATE'];}
+                      out:
+                          valueFrom: ${ return inputs.input_file.basename.replace(".bam", ".printreads.bam");}
+                  out: [out_bam]
+              quality_metrics:
+                  run: ../../tools/picard.CollectMultipleMetrics/2.9/picard.CollectMultipleMetrics.cwl
+                  in:
+                    I: gatk_print_reads/out_bam
+                    REFERENCE_SEQUENCE: reference_sequence
+                    PROGRAM:
+                      valueFrom: ${return ["null","MeanQualityByCycle"]}
+                    O:
+                      valueFrom: ${ return inputs.I.basename.replace(".bam", ".qmetrics")}
+                  out: [qual_file, qual_hist]
+
   variant_calling:
     run: ../modules/pair/variant-calling-pair.cwl
     in:
         runparams: runparams
         db_files: db_files
+        bams: parallel_printreads/out
         tumor: tumor
         normal: normal
-        normal_bam:
-            valueFrom: ${ return inputs.normal.bam; }
-        tumor_bam:
-            valueFrom: ${ return inputs.tumor.bam; }
         bed: bed_file
+        normal_bam:
+            valueFrom: ${ return inputs.bams[1]; }
+        tumor_bam:
+            valueFrom: ${ return inputs.bams[0]; }
         normal_sample_name:
             valueFrom: ${ return inputs.normal.ID; }
         tumor_sample_name:
@@ -279,10 +390,11 @@ steps:
         exac_filter: exac_filter
         tumor: tumor
         normal: normal
+        bams: parallel_printreads/out
         normal_bam:
-            valueFrom: ${ return inputs.normal.bam[0]; }
+            valueFrom: ${ return inputs.bams[1]; }
         tumor_bam:
-            valueFrom: ${ return inputs.tumor.bam[0]; }
+            valueFrom: ${ return inputs.bams[0]; }
         genome:
             valueFrom: ${ return inputs.runparams.genome }
         normal_sample_name:
@@ -309,13 +421,7 @@ steps:
         annotate_vcf: variant_calling/annotate_vcf
         tumor: tumor
         normal: normal
-        bam_normal:
-            valueFrom: ${ return inputs.normal.bam[0]; }
-        bam_tumor:
-            valueFrom: ${ return inputs.tumor.bam[0]; }
-        bams: 
-            source: [ ${ return inputs.bam_normal; }, ${ return inputs.bam_tumor; } ]
-            linkMerge: merge_flattened
+        bams: parallel_printreads/out
         genome:
             valueFrom: ${ return inputs.runparams.genome }
         ref_fasta: ref_fasta
