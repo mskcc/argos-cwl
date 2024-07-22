@@ -277,6 +277,7 @@ steps:
   gatk_base_recalibrator:
       run: ../tools/gatk.BaseRecalibrator/3.3-0/gatk.BaseRecalibrator.cwl
       in:
+          runparams: runparams
           reference_sequence: ref_fasta
           input_file: index_bams/bam_indexed
           dbsnp: dbsnp
@@ -285,7 +286,8 @@ steps:
           snps_1000g: snps_1000g
           knownSites:
               valueFrom: ${return [inputs.dbsnp,inputs.hapmap, inputs.indels_1000g, inputs.snps_1000g]}
-          covariate: covariates
+          covariate:
+              valueFrom: ${ return inputs.runparams.covariates }
           out:
               valueFrom: ${ return "recal.matrix"; }
           read_filter:
@@ -321,7 +323,7 @@ steps:
                   outputSource: quality_metrics/qual_hist
           steps:
               gatk_print_reads:
-                  run: ../../tools/gatk.PrintReads/3.3-0/gatk.PrintReads.cwl
+                  run: ../tools/gatk.PrintReads/3.3-0/gatk.PrintReads.cwl
                   in:
                       reference_sequence: reference_sequence
                       BQSR: BQSR
@@ -336,7 +338,7 @@ steps:
                           valueFrom: ${ return inputs.input_file.basename.replace(".bam", ".printreads.bam");}
                   out: [out_bam]
               quality_metrics:
-                  run: ../../tools/picard.CollectMultipleMetrics/2.9/picard.CollectMultipleMetrics.cwl
+                  run: ../tools/picard.CollectMultipleMetrics/2.9/picard.CollectMultipleMetrics.cwl
                   in:
                     I: gatk_print_reads/out_bam
                     REFERENCE_SEQUENCE: reference_sequence
