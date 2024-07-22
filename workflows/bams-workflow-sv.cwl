@@ -145,7 +145,7 @@ inputs:
 
 outputs:
 
-  # bams & metrics
+  # bams
   normal_bam:
     type: File
     secondaryFiles:
@@ -156,59 +156,6 @@ outputs:
     secondaryFiles:
       - ^.bai
     outputSource: format_output/tumor_bam
-  clstats1:
-    type:
-      type: array
-      items:
-        type: array
-        items: File
-    outputSource: alignment/clstats1
-  clstats2:
-    type:
-      type: array
-      items:
-        type: array
-        items: File
-    outputSource: alignment/clstats2
-  md_metrics:
-    type: File[]
-    outputSource: alignment/md_metrics
-  as_metrics:
-    type: File[]
-    outputSource: alignment/as_metrics
-  hs_metrics:
-    type: File[]
-    outputSource: alignment/hs_metrics
-  insert_metrics:
-    type: File[]
-    outputSource: alignment/insert_metrics
-  insert_pdf:
-    type: File[]
-    outputSource: alignment/insert_pdf
-  per_target_coverage:
-    type: File[]
-    outputSource: alignment/per_target_coverage
-  qual_metrics:
-    type: File[]
-    outputSource: alignment/qual_metrics
-  qual_pdf:
-    type: File[]
-    outputSource: alignment/qual_pdf
-  doc_basecounts:
-    type: File[]
-    outputSource: alignment/doc_basecounts
-  gcbias_pdf:
-    type: File[]
-    outputSource: alignment/gcbias_pdf
-  gcbias_metrics:
-    type: File[]
-    outputSource: alignment/gcbias_metrics
-  gcbias_summary:
-    type: File[]
-    outputSource: alignment/gcbias_summary
-  conpair_pileups:
-    type: File[]
-    outputSource: alignment/conpair_pileup
 
   # vcf
   mutect_vcf:
@@ -239,6 +186,7 @@ outputs:
     outputSource: variant_calling/mutect_norm_vcf
     secondaryFiles:
       - .tbi
+
   # snp_pileup
   snp_pileup:
     type: File
@@ -256,6 +204,7 @@ outputs:
   portal_file:
     type: File
     outputSource: structural_variants/portal_file
+
   # maf
   maf:
     type: File
