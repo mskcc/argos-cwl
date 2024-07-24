@@ -13,8 +13,7 @@ requirements:
     ramMin: 80000
     coresMin: 3
   DockerRequirement:
-    dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/roslin-variant-htslib:1.9
-
+    dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/roslin-variant-htslib:1.9.bash
 doc: |
   Index vcf files
 

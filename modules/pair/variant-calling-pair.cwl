@@ -10,8 +10,14 @@ requirements:
     StepInputExpressionRequirement: {}
 
 inputs:
-    tumor_bam: File
-    normal_bam: File
+    tumor_bam:
+       type: File
+       secondaryFiles:
+           - .bai
+    normal_bam:
+       type: File
+       secondaryFiles:
+           - .bai
     bed: File
     normal_sample_name: string
     tumor_sample_name: string
