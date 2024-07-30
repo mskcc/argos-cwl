@@ -1,7 +1,7 @@
 #!/usr/bin/env cwl-runner
 cwlVersion: v1.0
 class: Workflow
-id: pair-workflow-sv
+id: bams-workflow-sv
 requirements:
   MultipleInputFeatureRequirement: {}
   ScatterFeatureRequirement: {}
