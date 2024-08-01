@@ -147,10 +147,10 @@ tumors:
   group: Group_2
   zR1:
   - class: File
-    path: /compute/juno/cmo/cse/nikhil/pipeline_data/data/fastq/DU874145-T/DU874145-T_IGO_00000_TEST_L001_R1_001.fastq.gz
+    path: /juno/work/ci/jenkins/resources/pipeline_data/data/fastq/DU874145-T/DU874145-T_IGO_00000_TEST_L001_R1_001.fastq.gz
   zR2:
   - class: File
-    path: /compute/juno/cmo/cse/nikhil/pipeline_data/data/fastq/DU874145-T/DU874145-T_IGO_00000_TEST_L001_R2_001.fastq.gz
+    path: /juno/work/ci/jenkins/resources/pipeline_data/data/fastq/DU874145-T/DU874145-T_IGO_00000_TEST_L001_R2_001.fastq.gz
 - CN: MSKCC
   ID: bar_tumor
   LB: bar_tumor_1
@@ -159,10 +159,10 @@ tumors:
   - bar_tumor_1-bar_tumor
   R1:
   - class: File
-    path: /compute/juno/cmo/cse/nikhil/pipeline_data/data/fastq/DU874145-T/DU874145-T_IGO_00000_TEST_L001_R1_001.fastq.gz
+    path: /juno/work/ci/jenkins/resources/pipeline_data/data/fastq/DU874145-T/DU874145-T_IGO_00000_TEST_L001_R1_001.fastq.gz
   R2:
   - class: File
-    path: /compute/juno/cmo/cse/nikhil/pipeline_data/data/fastq/DU874145-T/DU874145-T_IGO_00000_TEST_L001_R2_001.fastq.gz
+    path: /juno/work/ci/jenkins/resources/pipeline_data/data/fastq/DU874145-T/DU874145-T_IGO_00000_TEST_L001_R2_001.fastq.gz
   RG_ID:
   - bar_tumor_1-bar_tumorPE
   adapter: AGATCGGAAGAGCACACGTCTGAACTCCAGTCACATGAGCATCTCGTATGCCGTCTTCTGCTTG
@@ -187,7 +187,7 @@ normals:
   adapter2: AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT
   bam:
   - class: File
-    path: /compute/juno/cmo/cse/nikhil/pipeline_data/data/SampleWorkflowPair0Sample1/SampleWorkflow/foo_normal.rg.md.bam
+    path: /juno/work/ci/jenkins/resources/pipeline_data/data/SampleWorkflowPair0Sample1/SampleWorkflow/foo_normal.rg.md.bam
   bwa_output: foo_normal.bam
   group: Group_2
   zR1: []
@@ -200,10 +200,10 @@ normals:
   - bar_normal_1-bar_normal
   R1:
   - class: File
-    path: /compute/juno/cmo/cse/nikhil/pipeline_data/data/fastq/DU874145-N/DU874145-N_IGO_00000_TEST_L001_R1_001.fastq.gz
+    path: /juno/work/ci/jenkins/resources/pipeline_data/data/fastq/DU874145-N/DU874145-N_IGO_00000_TEST_L001_R1_001.fastq.gz
   R2:
   - class: File
-    path: /compute/juno/cmo/cse/nikhil/pipeline_data/data/fastq/DU874145-N/DU874145-N_IGO_00000_TEST_L001_R2_001.fastq.gz
+    path: /juno/work/ci/jenkins/resources/pipeline_data/data/fastq/DU874145-N/DU874145-N_IGO_00000_TEST_L001_R2_001.fastq.gz
   RG_ID:
   - bar_normal_1-bar_normalPE
   adapter: AGATCGGAAGAGCACACGTCTGAACTCCAGTCACATGAGCATCTCGTATGCCGTCTTCTGCTTG
