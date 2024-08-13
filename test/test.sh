@@ -13,7 +13,7 @@ run_test() {
 
 # Test the SV cwl
 
-#run_test $1 sv ../project-workflow-sv.cwl inputs.yaml
+run_test $1 sv ../project-workflow-sv.cwl inputs.yaml
 
 # Test the non SV cwl
 
