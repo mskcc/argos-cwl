@@ -46,13 +46,6 @@ steps:
     out:
       - id: output_sam
     run: ../../tools/bwa-mem/0.7.12/bwa_mem_with_read_groups.cwl
-  - id: samtools_sort
-    in:
-      - id: input
-        source: sam_to_bam/output_bam
-    out:
-      - id: output_file
-    run: ../../tools/samtools.sort/1.3.1/samtools.sort.cwl
   - id: sam_to_bam
     in:
       - id: input
@@ -60,4 +53,11 @@ steps:
     out:
       - id: output_bam
     run: ../../tools/samtools.view/1.3.1/samtools.view.cwl
+  - id: samtools_sort
+    in:
+      - id: input
+        source: sam_to_bam/output_bam
+    out:
+      - id: output_file
+    run: ../../tools/samtools.sort/1.3.1/samtools.sort.cwl
 requirements: []
