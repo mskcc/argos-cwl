@@ -100,7 +100,7 @@ inputs:
         assay: string
         pi: string
         pi_email: string
-        opt_dup_pix_dist: string
+        opt_dup_pix_dist: int
         abra_ram_min: int
         gatk_jar_path: string
   tumor:

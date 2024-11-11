@@ -12,7 +12,7 @@ inputs:
 
   genome: string
   intervals: string[]
-  opt_dup_pix_dist: string
+  opt_dup_pix_dist: int
   hapmap:
     type: File
     secondaryFiles:

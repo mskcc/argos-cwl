@@ -275,7 +275,7 @@ inputs:
       separate: false
 
   OPTICAL_DUPLICATE_PIXEL_DISTANCE:
-    type: ['null', string]
+    type: ['null', string, int]
     doc: The maximum offset between two duplicate clusters in order to consider them
       optical duplicates. The default is appropriate for unpatterned versions of the
       Illumina platform. For the patterned flowcell models, 2500 is moreappropriate.

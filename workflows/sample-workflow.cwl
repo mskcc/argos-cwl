@@ -50,7 +50,7 @@ inputs:
       - .fai
       - ^.dict
   genome: string
-  opt_dup_pix_dist: string
+  opt_dup_pix_dist: int
   bait_intervals: File
   target_intervals: File
   fp_intervals: File
