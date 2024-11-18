@@ -29,7 +29,7 @@ requirements:
     ramMin: $(inputs.abra_ram_min)
     coresMin: 16
   DockerRequirement:
-    dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/roslin-variant-abra:2.17
+    dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/abra:2.17
 
 
 doc: |

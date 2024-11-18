@@ -89,7 +89,7 @@ steps:
                 InlineJavascriptRequirement: {}
                 MultipleInputFeatureRequirement: {}
                 DockerRequirement:
-                    dockerPull: alpine:3.8
+                    dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/cmo-utils:1.9.15
             inputs:
                 echoString:
                     type: string

@@ -12,7 +12,7 @@ requirements:
   ramMin: 12000
   coresMin: 3
 - class: DockerRequirement
-  dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/roslin-variant-trimgalore:0.2.5.mod.bash
+  dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/trimgalore:0.2.5.mod
 
 
 doc: |

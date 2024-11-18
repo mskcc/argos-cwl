@@ -34,7 +34,7 @@ steps:
             stdout: $(inputs.output_filename)
             requirements:
                 DockerRequirement:
-                    dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/alpine:3.8
+                    dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/cmo-utils:1.9.15
             inputs:
                 input_maf:
                     type: File
@@ -63,7 +63,7 @@ steps:
             stdout: $(inputs.output_filename)
             requirements:
                 DockerRequirement:
-                    dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/alpine:3.8
+                    dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/cmo-utils:1.9.15
             inputs:
                 grepped_file:
                     type: File
@@ -86,7 +86,7 @@ steps:
             stdout: $(inputs.output_filename)
             requirements:
                 DockerRequirement:
-                    dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/alpine:3.8
+                    dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/cmo-utils:1.9.15
             inputs:
                 extracted_file:
                     type: File
@@ -116,7 +116,7 @@ steps:
             stdout: $(inputs.output_filename)
             requirements:
                 DockerRequirement:
-                    dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/alpine:3.8
+                    dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/cmo-utils:1.9.15
             inputs:
                 sed_file:
                     type: File

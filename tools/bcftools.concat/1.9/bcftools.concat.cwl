@@ -13,7 +13,7 @@ requirements:
     ramMin: 8000
     coresMin: 3
   DockerRequirement:
-    dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/roslin-variant-htslib:1.9.bash
+    dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/htslib:1.9
 
 doc: |
   concatenate VCF/BCF files from the same set of samples

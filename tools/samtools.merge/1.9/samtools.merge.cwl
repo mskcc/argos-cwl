@@ -25,7 +25,7 @@ requirements:
     ramMin: 32000
     coresMin: 6
   - class: DockerRequirement
-    dockerPull: '058264265624.dkr.ecr.us-east-1.amazonaws.com/samtools-1.9:latest'
+    dockerPull: '058264265624.dkr.ecr.us-east-1.amazonaws.com/htslib:1.9'
   - class: InlineJavascriptRequirement
 'dct:contributor':
   'foaf:mbox': 'mailto:bolipatc@mskcc.org'
