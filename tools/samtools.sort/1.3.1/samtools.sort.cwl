@@ -118,5 +118,5 @@ requirements:
     ramMin: 32000
     coresMin: 6
   - class: DockerRequirement
-    dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/roslin-variant-samtools:1.3.1.bash
+    dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/samtools:1.3.1
   - class: InlineJavascriptRequirement

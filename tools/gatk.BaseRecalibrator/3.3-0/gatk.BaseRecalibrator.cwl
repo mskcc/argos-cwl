@@ -35,7 +35,7 @@ requirements:
     ramMin: 24000
     coresMin: 6
   DockerRequirement:
-    dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/roslin-variant-gatk:3.3-0
+    dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/gatk:3.3-0
 
 doc: |
   None

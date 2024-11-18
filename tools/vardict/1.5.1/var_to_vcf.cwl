@@ -17,7 +17,7 @@ requirements:
     coresMin: 6
     ramMin: 32000
   DockerRequirement:
-    dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/roslin-variant-vardict:1.5.1
+    dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/vardict:1.5.1
 
 inputs:
 

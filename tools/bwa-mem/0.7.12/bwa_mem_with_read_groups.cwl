@@ -204,6 +204,6 @@ requirements:
     ramMin: 32000
     coresMin: 6
   - class: DockerRequirement
-    dockerPull: '058264265624.dkr.ecr.us-east-1.amazonaws.com/bwa_mem:0.7.12'
+    dockerPull: '058264265624.dkr.ecr.us-east-1.amazonaws.com/bwa:0.7.12'
   - class: InlineJavascriptRequirement
 stdout: '$(inputs.reads[0].basename.replace(''fastq.gz'', ''sam''))'

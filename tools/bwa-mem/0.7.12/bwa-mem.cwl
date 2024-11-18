@@ -13,7 +13,7 @@ requirements:
     ramMin: 32000
     coresMin: 6
   DockerRequirement:
-    dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/bwa_mem:0.7.12
+    dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/bwa:0.7.12
 
 label: "run bwa mem -t 6 -M"
 doc: |

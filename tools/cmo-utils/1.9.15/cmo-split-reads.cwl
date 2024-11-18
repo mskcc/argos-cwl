@@ -11,7 +11,7 @@ requirements:
     ramMin: 24000
     coresMin: 3
   DockerRequirement:
-    dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/roslin-variant-cmo-utils:1.9.15
+    dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/cmo-utils:1.9.15
 
 
 doc: |
