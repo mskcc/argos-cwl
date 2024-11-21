@@ -7,6 +7,7 @@ requirements:
     ScatterFeatureRequirement: {}
     SubworkflowFeatureRequirement: {}
     InlineJavascriptRequirement: {}
+    StepInputExpressionRequirement: {}
 
 inputs:
     bams:
@@ -194,6 +195,10 @@ steps:
                 input_file: File
                 reference_sequence: File
                 BQSR: File
+            requirements:
+                StepInputExpressionRequirement: {}
+                MultipleInputFeatureRequirement: {}
+                InlineJavascriptRequirement: {}
             outputs:
                 out:
                     type: File

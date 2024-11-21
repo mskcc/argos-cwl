@@ -12,7 +12,7 @@ requirements:
     ramMin: 10000
     coresMin: 4
   DockerRequirement:
-    dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/htslib:1.9
+    dockerPull: 058264265624.dkr.ecr.us-east-1.amazonaws.com/basic-filtering:0.3
 
 
 doc: |

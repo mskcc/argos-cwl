@@ -1,7 +1,7 @@
 #!/usr/bin/env cwl-runner
 cwlVersion: v1.0
 class: Workflow
-id: sample-workflow
+id: pre-align-test
 requirements:
   MultipleInputFeatureRequirement: {}
   ScatterFeatureRequirement: {}
@@ -65,42 +65,28 @@ outputs:
   clstats2:
     type: File[]
     outputSource: align/clstats2
-  bam:
-    type: File
-    outputSource: mark_duplicates/bam
-  md_metrics:
-    type: File
-    outputSource: mark_duplicates/mdmetrics
-  as_metrics:
-    type: File
-    outputSource: gather_metrics/as_metrics
-  hs_metrics:
-    type: File
-    outputSource: gather_metrics/hs_metrics
-  insert_metrics:
-    type: File
-    outputSource: gather_metrics/insert_metrics
-  insert_pdf:
-    type: File
-    outputSource: gather_metrics/insert_pdf
-  per_target_coverage:
-    type: File
-    outputSource: gather_metrics/per_target_coverage
-  doc_basecounts:
-    type: File
-    outputSource: gather_metrics/doc_basecounts
-  gcbias_pdf:
-    type: File
-    outputSource: gather_metrics/gcbias_pdf
-  gcbias_metrics:
-    type: File
-    outputSource: gather_metrics/gcbias_metrics
-  gcbias_summary:
-    type: File
-    outputSource: gather_metrics/gcbias_summary
-  conpair_pileup:
-    type: File
-    outputSource: gather_metrics/conpair_pileup
+  output_bam:
+    type: File[]
+    outputSource: align/output_bam
+  add_rg_CN:
+    type: string
+    outputSource: get_sample_info/CN
+  add_rg_LB:
+    type: string
+    outputSource: get_sample_info/LB
+  add_rg_SM:
+    type: string
+    outputSource: get_sample_info/ID
+  add_rg_PL:
+    type: string
+    outputSource: get_sample_info/PL
+  add_rg_PU:
+    type: string[]
+    outputSource: flatten/rg_PU
+  add_rg_ID:
+    type: string[]
+    outputSource: flatten/rg_ID
+
 steps:
   get_sample_info:
       in:
@@ -230,7 +216,7 @@ steps:
       add_rg_CN: get_sample_info/CN
     scatter: [chunkfastq1, chunkfastq2, add_rg_ID, add_rg_PU]
     scatterMethod: dotproduct
-    out: [clstats1, clstats2, bam]
+    out: [clstats1, clstats2, output_bam]
     run:
       class: Workflow
       id: alignment_sample
@@ -255,9 +241,9 @@ steps:
         clstats2:
           type: File
           outputSource: trim_galore/clstats2
-        bam:
+        output_bam:
           type: File
-          outputSource: add_rg_id/bam
+          outputSource: sam_to_bam/output_bam
       steps:
         trim_galore:
           run: ../tools/trimgalore/0.2.5.mod/trimgalore.cwl
@@ -287,40 +273,3 @@ steps:
             samheader:
               valueFrom: ${ return true; }
           out: [output_bam]
-        add_rg_id:
-          run: ../tools/picard.AddOrReplaceReadGroups/2.9/picard.AddOrReplaceReadGroups.cwl
-          in:
-            I: sam_to_bam/output_bam
-            O:
-              valueFrom: ${ return inputs.I.basename.replace(".bam", ".rg.bam") }
-            LB: add_rg_LB
-            PL: add_rg_PL
-            ID: add_rg_ID
-            PU: add_rg_PU
-            SM: add_rg_SM
-            CN: add_rg_CN
-            SO:
-              default: "coordinate"
-          out: [bam, bai]
-  mark_duplicates:
-    run: ../tools/picard.MarkDuplicates/2.9/picard.MarkDuplicates.cwl
-    in:
-      OPTICAL_DUPLICATE_PIXEL_DISTANCE: opt_dup_pix_dist
-      I: align/bam
-      O:
-        valueFrom: ${ return inputs.I[0].basename.replace(/\.chunk\d\d\d\.rg\.bam/, ".rg.md.bam") }
-      M:
-        valueFrom: ${ return inputs.I[0].basename.replace(/\.chunk\d\d\d\.rg\.bam/, ".rg.md_metrics") }
-    out: [bam, bai, mdmetrics]
-  gather_metrics:
-    run: ../modules/sample/gather-metrics-sample.cwl
-    in:
-      bait_intervals: bait_intervals
-      target_intervals: target_intervals
-      fp_intervals: fp_intervals
-      ref_fasta: ref_fasta
-      conpair_markers_bed: conpair_markers_bed
-      genome: genome
-      gatk_jar_path: gatk_jar_path
-      bam: mark_duplicates/bam
-    out: [ gcbias_pdf,gcbias_metrics,gcbias_summary,as_metrics,hs_metrics,per_target_coverage,insert_metrics,insert_pdf,doc_basecounts,conpair_pileup ]

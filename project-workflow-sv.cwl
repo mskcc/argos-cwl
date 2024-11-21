@@ -99,7 +99,7 @@ inputs:
         assay: string
         pi: string
         pi_email: string
-        opt_dup_pix_dist: string
+        opt_dup_pix_dist: int
         facets_pcval: int
         facets_cval: int
         abra_ram_min: int
