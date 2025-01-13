@@ -236,6 +236,12 @@ outputs:
   snp_pileup:
     type: File[]
     outputSource: pair_process/snp_pileup
+
+  # disambiguate info
+  disambiguate_summary:
+    type: File[]
+    outputSource: alignment/disambiguate_summary
+    
   # structural variants
   merged_file_unfiltered:
     type: File[]

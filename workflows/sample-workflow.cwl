@@ -101,6 +101,9 @@ outputs:
   conpair_pileup:
     type: File
     outputSource: gather_metrics/conpair_pileup
+  disambiguate_summary:
+    type: File?
+    outputSource: resolve_pdx/summary
 steps:
   get_sample_info:
       in:
