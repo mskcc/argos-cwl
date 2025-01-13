@@ -238,7 +238,13 @@ outputs:
 
   # disambiguate info
   disambiguate_summary:
-    type: File[]
+    type:
+      type: array
+      items:
+        type: array
+        items:
+          type: array
+          items: File
     outputSource: pair_process/disambiguate_summary
 
   # maf

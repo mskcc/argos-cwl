@@ -239,7 +239,13 @@ outputs:
 
   # disambiguate info
   disambiguate_summary:
-    type: File[]
+    type:
+      type: array
+      items:
+        type: array
+        items:
+          type: array
+          items: File
     outputSource: pair_process/disambiguate_summary
 
   # structural variants
@@ -285,7 +291,7 @@ steps:
       normal: normals
       ref_fasta: ref_fasta
       mouse_fasta: mouse_fasta
-    out: [normal_bam,tumor_bam,clstats1,clstats2,md_metrics,as_metrics,hs_metrics,insert_metrics,insert_pdf,per_target_coverage,qual_metrics,qual_pdf,doc_basecounts,gcbias_pdf,gcbias_metrics,gcbias_summary,conpair_pileups,mutect_vcf,mutect_callstats,vardict_vcf,combine_vcf,annotate_vcf,vardict_norm_vcf,mutect_norm_vcf,snp_pileup,merged_file_unfiltered,merged_file,maf_file,portal_file,maf,genome,assay,pi,pi_email,project_prefix,normal_sample_name,tumor_sample_name]
+    out: [normal_bam,tumor_bam,clstats1,clstats2,md_metrics,as_metrics,hs_metrics,insert_metrics,insert_pdf,per_target_coverage,qual_metrics,qual_pdf,doc_basecounts,gcbias_pdf,gcbias_metrics,gcbias_summary,conpair_pileups,disambiguate_summary,mutect_vcf,mutect_callstats,vardict_vcf,combine_vcf,annotate_vcf,vardict_norm_vcf,mutect_norm_vcf,snp_pileup,merged_file_unfiltered,merged_file,maf_file,portal_file,maf,genome,assay,pi,pi_email,project_prefix,normal_sample_name,tumor_sample_name]
     scatter: [tumor, normal]
     scatterMethod: dotproduct
 
