@@ -239,8 +239,8 @@ outputs:
   # disambiguate info
   disambiguate_summary:
     type: File[]
-    outputSource: alignment/disambiguate_summary
-    
+    outputSource: pair_process/disambiguate_summary
+
   # maf
   maf:
     type: File[]
