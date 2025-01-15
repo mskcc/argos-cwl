@@ -206,6 +206,15 @@ outputs:
   conpair_pileups:
     type: File[]
     outputSource: alignment/conpair_pileup
+  
+  # disambiguate info
+  disambiguate_summary:
+    type:
+      type: array
+      items:
+        type: array
+        items: File
+    outputSource: alignment/disambiguate_summary
 
   # vcf
   mutect_vcf:
@@ -319,7 +328,7 @@ steps:
         ref_fasta: ref_fasta
         conpair_markers_bed:
           valueFrom: ${ return inputs.db_files.conpair_markers_bed }
-    out: [bams,clstats1,clstats2,md_metrics,covint_list,bed,as_metrics,hs_metrics,insert_metrics,insert_pdf,per_target_coverage,qual_metrics,qual_pdf,doc_basecounts,gcbias_pdf,gcbias_metrics,gcbias_summary,conpair_pileup]
+    out: [bams,clstats1,clstats2,md_metrics,covint_list,bed,as_metrics,hs_metrics,insert_metrics,insert_pdf,per_target_coverage,qual_metrics,qual_pdf,doc_basecounts,gcbias_pdf,gcbias_metrics,gcbias_summary,conpair_pileup,disambiguate_summary]
 
   variant_calling:
     run: ../modules/pair/variant-calling-pair.cwl
