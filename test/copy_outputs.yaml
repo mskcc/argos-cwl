@@ -23,3 +23,8 @@ pileup:
     path: /juno/work/ci/jenkins/resources/pipeline_data/data/PairWorkflowPair0/PairWorkflow/foo_tumor.rg.md.pileup
   - class: File
     path: /juno/work/ci/jenkins/resources/pipeline_data/data/PairWorkflowPair0/PairWorkflow/foo_normal.rg.md.pileup
+disambiguate:
+  - class: File
+    path: /juno/bic/work/ci/jenkins/resources/pipeline_data/data/disambiguate/foo_tumor_disambiguate_summary.txt
+  - class: File
+    path: /juno/bic/work/ci/jenkins/resources/pipeline_data/data/disambiguate/bar_tumor_disambiguate_summary.txt
