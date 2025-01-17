@@ -82,38 +82,38 @@ curated_bams:
   path: s3://argos-resources-data-2/curated_bams/IMPACT468_b37/s_C_WWTK32_N001_d.Group18.rg.md.abra.printreads.bam
 - class: File
   path: s3://argos-resources-data-2/curated_bams/IMPACT468_b37/s_C_XXC7N6_N001_d.Group12.rg.md.abra.printreads.bam
-
-bait_intervals:
-  class: File
-  location: s3://argos-resources-data-2/genomic_resources/targets/IMPACT468/b37/picard_baits.interval_list
-conpair_markers: /usr/bin/conpair/data/markers/GRCh37.autosomes.phase3_shapeit2_mvncall_integrated.20130502.SNV.genotype.sselect_v4_MAF_0.4_LD_0.8.txt
-conpair_markers_bed: /usr/bin/conpair/data/markers/GRCh37.autosomes.phase3_shapeit2_mvncall_integrated.20130502.SNV.genotype.sselect_v4_MAF_0.4_LD_0.8.bed
-custom_enst: /usr/bin/vcf2maf/data/isoform_overrides_at_mskcc
-delly_exclude:
-  class: File
-  path: s3://argos-resources-data-2/genomes/GRCh37/delly/human.hg19.excl.tsv
-facets_snps:
-  class: File
-  path: s3://argos-resources-data-2/genomes/GRCh37/facets_snps/dbsnp_137.b37__RmDupsClean__plusPseudo50__DROP_SORT.vcf.gz
-fp_genotypes:
-  class: File
-  location: s3://argos-resources-data-2/genomic_resources/targets/IMPACT468/b37/FP_tiling_genotypes.txt
-fp_intervals:
-  class: File
-  location: s3://argos-resources-data-2/genomic_resources/targets/IMPACT468/b37/FP_tiling_intervals.list
-hotspot_list: /usr/bin/ngs-filters/data/hotspot-list-union-v1-v2.txt
-hotspot_list_maf:
-  class: File
-  path: s3://argos-resources-data-2/qc_resources/hotspot-list-union-v1-v2.maf
-hotspot_vcf: /usr/bin/basicfiltering/data/hotspot-list-union-v1-v2.vcf
-refseq:
-  class: File
-  path: s3://argos-resources-data-2/request_files/refseq/refGene_b37.sorted.txt
-target_intervals:
-  class: File
-  location: s3://argos-resources-data-2/genomic_resources/targets/IMPACT468/b37/picard_targets.interval_list
-vep_data: /var/cache
-vep_path: /usr/bin/vep
+db_files:
+  bait_intervals:
+    class: File
+    location: s3://argos-resources-data-2/genomic_resources/targets/IMPACT468/b37/picard_baits.interval_list
+  conpair_markers: /usr/bin/conpair/data/markers/GRCh37.autosomes.phase3_shapeit2_mvncall_integrated.20130502.SNV.genotype.sselect_v4_MAF_0.4_LD_0.8.txt
+  conpair_markers_bed: /usr/bin/conpair/data/markers/GRCh37.autosomes.phase3_shapeit2_mvncall_integrated.20130502.SNV.genotype.sselect_v4_MAF_0.4_LD_0.8.bed
+  custom_enst: /usr/bin/vcf2maf/data/isoform_overrides_at_mskcc
+  delly_exclude:
+    class: File
+    path: s3://argos-resources-data-2/genomes/GRCh37/delly/human.hg19.excl.tsv
+  facets_snps:
+    class: File
+    path: s3://argos-resources-data-2/genomes/GRCh37/facets_snps/dbsnp_137.b37__RmDupsClean__plusPseudo50__DROP_SORT.vcf.gz
+  fp_genotypes:
+    class: File
+    location: s3://argos-resources-data-2/genomic_resources/targets/IMPACT468/b37/FP_tiling_genotypes.txt
+  fp_intervals:
+    class: File
+    location: s3://argos-resources-data-2/genomic_resources/targets/IMPACT468/b37/FP_tiling_intervals.list
+  hotspot_list: /usr/bin/ngs-filters/data/hotspot-list-union-v1-v2.txt
+  hotspot_list_maf:
+    class: File
+    path: s3://argos-resources-data-2/qc_resources/hotspot-list-union-v1-v2.maf
+  hotspot_vcf: /usr/bin/basicfiltering/data/hotspot-list-union-v1-v2.vcf
+  refseq:
+    class: File
+    path: s3://argos-resources-data-2/request_files/refseq/refGene_b37.sorted.txt
+  target_intervals:
+    class: File
+    location: s3://argos-resources-data-2/genomic_resources/targets/IMPACT468/b37/picard_targets.interval_list
+  vep_data: /var/cache
+  vep_path: /usr/bin/vep
 dbsnp:
   class: File
   path: s3://argos-resources-data-2/request_files/dbsnp/dbsnp_138.b37.excluding_sites_after_129.vcf
