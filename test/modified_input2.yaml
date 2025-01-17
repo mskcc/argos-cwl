@@ -172,7 +172,7 @@ tumor:
   group: Group_2
   zR1: []
   zR2: []
-normal:
+normals:
 - CN: MSKCC
   ID: foo_normal
   LB: foo_normal_1
