@@ -224,7 +224,7 @@
     "class": "File",
     "path": "s3://argos-resources-data-2/genomes/GRCm38/GRCm38.fasta"
   },
-  "tumor": [
+  "tumor_name": [
     {
       "CN": "MSKCC",
       "ID": "foo_tumor",
@@ -288,7 +288,7 @@
       "zR2": []
     }
   ],
-  "normal": [
+  "normal_name": [
     {
       "CN": "MSKCC",
       "ID": "foo_normal",
