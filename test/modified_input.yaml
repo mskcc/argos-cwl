@@ -130,7 +130,7 @@ mouse_fasta:
   class: File
   path: s3://argos-resources-data-2/genomes/GRCm38/GRCm38.fasta
 tumor:
-- CN: MSKCC
+  CN: MSKCC
   ID: foo_tumor
   LB: foo_tumor_1
   PL: Illumina
@@ -151,29 +151,8 @@ tumor:
   zR2:
   - class: File
     path: s3://argos-test-data-2/jenkins-fastqs/DU874145-T_IGO_00000_TEST_L001_R2_001.fastq.gz
-- CN: MSKCC
-  ID: bar_tumor
-  LB: bar_tumor_1
-  PL: Illumina
-  PU:
-  - bar_tumor_1-bar_tumor
-  R1:
-  - class: File
-    path: s3://argos-test-data-2/jenkins-fastqs/DU874145-T_IGO_00000_TEST_L001_R1_001.fastq.gz
-  R2:
-  - class: File
-    path: s3://argos-test-data-2/jenkins-fastqs/DU874145-T_IGO_00000_TEST_L001_R2_001.fastq.gz
-  RG_ID:
-  - bar_tumor_1-bar_tumorPE
-  adapter: AGATCGGAAGAGCACACGTCTGAACTCCAGTCACATGAGCATCTCGTATGCCGTCTTCTGCTTG
-  adapter2: AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT
-  bam: []
-  bwa_output: bar_tumor.bam
-  group: Group_2
-  zR1: []
-  zR2: []
 normal:
-- CN: MSKCC
+  CN: MSKCC
   ID: foo_normal
   LB: foo_normal_1
   PL: Illumina
@@ -189,27 +168,6 @@ normal:
   - class: File
     path: s3://argos-test-data-2/jenkins-fastqs/foo_normal.rg.md.bam
   bwa_output: foo_normal.bam
-  group: Group_2
-  zR1: []
-  zR2: []
-- CN: MSKCC
-  ID: bar_normal
-  LB: bar_normal_1
-  PL: Illumina
-  PU:
-  - bar_normal_1-bar_normal
-  R1:
-  - class: File
-    path: s3://argos-test-data-2/jenkins-fastqs/DU874145-N_IGO_00000_TEST_L001_R1_001.fastq.gz
-  R2:
-  - class: File
-    path: s3://argos-test-data-2/jenkins-fastqs/DU874145-N_IGO_00000_TEST_L001_R2_001.fastq.gz
-  RG_ID:
-  - bar_normal_1-bar_normalPE
-  adapter: AGATCGGAAGAGCACACGTCTGAACTCCAGTCACATGAGCATCTCGTATGCCGTCTTCTGCTTG
-  adapter2: AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT
-  bam: []
-  bwa_output: bar_normal.bam
   group: Group_2
   zR1: []
   zR2: []
