@@ -147,10 +147,10 @@ tumor:
   group: Group_2
   zR1:
   - class: File
-    path: /data1/test01/genomic_resources/argos/jenkins/resources/pipeline_data/data/fastq/DU874145-T_IGO_00000_TEST_L001_R1_001.fastq.gz
+    path: /data1/test01/genomic_resources/argos/jenkins/resources/pipeline_data/data/fastq/DU874145-T/DU874145-T_IGO_00000_TEST_L001_R1_001.fastq.gz
   zR2:
   - class: File
-    path: /data1/test01/genomic_resources/argos/jenkins/resources/pipeline_data/data/fastq/DU874145-T_IGO_00000_TEST_L001_R2_001.fastq.gz
+    path: /data1/test01/genomic_resources/argos/jenkins/resources/pipeline_data/data/fastq/DU874145-T/DU874145-T_IGO_00000_TEST_L001_R2_001.fastq.gz
 normal:
   CN: MSKCC
   ID: foo_normal
