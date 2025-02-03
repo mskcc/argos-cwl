@@ -109,7 +109,7 @@ steps:
   get_sample_info:
       in:
         sample: sample
-      out: [ CN,LB,ID,PL,PU,zPU,R1,R2,zR1,zR2,bam,RG_ID,adapter,adapter2,bwa_output]
+      out: [ CN,LB,ID,PL,PU,zPU,R1,R2,zR1,zR2,zBam,bam,RG_ID,adapter,adapter2,bwa_output]
       run:
           class: ExpressionTool
           id: get_sample_info
