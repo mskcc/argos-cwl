@@ -1,20 +1,20 @@
 vcf:
   - class: File
-    path: /juno/work/ci/argos-test/data/PairWorkflowPair0/PairWorkflow/foo_tumor.foo_normal.annotate-variants.vcf
+    path: /juno/work/ci/jenkins/resources/pipeline_data/data/PairWorkflowPair0/PairWorkflow/foo_tumor.foo_normal.annotate-variants.vcf
   - class: File
-    path: /juno/work/ci/argos-test/data/PairWorkflowPair1/PairWorkflow/bar_tumor.bar_normal.annotate-variants.vcf
+    path: /juno/work/ci/jenkins/resources/pipeline_data/data/PairWorkflowPair1/PairWorkflow/bar_tumor.bar_normal.annotate-variants.vcf
 bam:
   - class: File
-    path: /juno/work/ci/argos-test/data/PairWorkflowPair0/PairWorkflow/foo_normal.rg.md.abra.printreads.bam
+    path: /juno/work/ci/jenkins/resources/pipeline_data/data/PairWorkflowPair0/PairWorkflow/foo_normal.rg.md.abra.printreads.bam
   - class: File
-    path: /juno/work/ci/argos-test/data/PairWorkflowPair1/PairWorkflow/bar_normal.rg.md.abra.printreads.bam
+    path: /juno/work/ci/jenkins/resources/pipeline_data/data/PairWorkflowPair1/PairWorkflow/bar_normal.rg.md.abra.printreads.bam
 maf:
   - class: File
-    path: /juno/work/ci/argos-test/data/PairWorkflowPair0/PairWorkflow/foo_tumor.foo_normal.muts.maf
+    path: /juno/work/ci/jenkins/resources/pipeline_data/data/PairWorkflowPair0/PairWorkflow/foo_tumor.foo_normal.muts.maf
   - class: File
-    path: /juno/work/ci/argos-test/data/PairWorkflowPair1/PairWorkflow/bar_tumor.bar_normal.muts.maf
+    path: /juno/work/ci/jenkins/resources/pipeline_data/data/PairWorkflowPair1/PairWorkflow/bar_tumor.bar_normal.muts.maf
 pileup:
   - class: File
-    path: /juno/work/ci/argos-test/data/PairWorkflowPair0/PairWorkflow/foo_tumor.rg.md.pileup
+    path: /juno/work/ci/jenkins/resources/pipeline_data/data/PairWorkflowPair0/PairWorkflow/foo_tumor.rg.md.pileup
   - class: File
-    path: /juno/work/ci/argos-test/data/PairWorkflowPair0/PairWorkflow/foo_normal.rg.md.pileup
+    path: /juno/work/ci/jenkins/resources/pipeline_data/data/PairWorkflowPair0/PairWorkflow/foo_normal.rg.md.pileup

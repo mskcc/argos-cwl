@@ -1,7 +1,7 @@
 #!/usr/bin/env cwl-runner
 cwlVersion: v1.0
 class: Workflow
-id: pair-workflow-sv
+id: bams-workflow-sv
 requirements:
   MultipleInputFeatureRequirement: {}
   ScatterFeatureRequirement: {}
@@ -10,6 +10,9 @@ requirements:
   InlineJavascriptRequirement: {}
 
 inputs:
+  bed_file:
+    type: File
+
   db_files:
     type:
       type: record
@@ -142,7 +145,7 @@ inputs:
 
 outputs:
 
-  # bams & metrics
+  # bams
   normal_bam:
     type: File
     secondaryFiles:
@@ -153,68 +156,14 @@ outputs:
     secondaryFiles:
       - ^.bai
     outputSource: format_output/tumor_bam
-  clstats1:
-    type:
-      type: array
-      items:
-        type: array
-        items: File
-    outputSource: alignment/clstats1
-  clstats2:
-    type:
-      type: array
-      items:
-        type: array
-        items: File
-    outputSource: alignment/clstats2
-  md_metrics:
-    type: File[]
-    outputSource: alignment/md_metrics
-  as_metrics:
-    type: File[]
-    outputSource: alignment/as_metrics
-  hs_metrics:
-    type: File[]
-    outputSource: alignment/hs_metrics
-  insert_metrics:
-    type: File[]
-    outputSource: alignment/insert_metrics
-  insert_pdf:
-    type: File[]
-    outputSource: alignment/insert_pdf
-  per_target_coverage:
-    type: File[]
-    outputSource: alignment/per_target_coverage
+
+  # qual metrics
   qual_metrics:
     type: File[]
-    outputSource: alignment/qual_metrics
+    outputSource: parallel_printreads/qual_metrics
   qual_pdf:
     type: File[]
-    outputSource: alignment/qual_pdf
-  doc_basecounts:
-    type: File[]
-    outputSource: alignment/doc_basecounts
-  gcbias_pdf:
-    type: File[]
-    outputSource: alignment/gcbias_pdf
-  gcbias_metrics:
-    type: File[]
-    outputSource: alignment/gcbias_metrics
-  gcbias_summary:
-    type: File[]
-    outputSource: alignment/gcbias_summary
-  conpair_pileups:
-    type: File[]
-    outputSource: alignment/conpair_pileup
-  
-  # disambiguate info
-  disambiguate_summary:
-    type:
-      type: array
-      items:
-        type: array
-        items: File
-    outputSource: alignment/disambiguate_summary
+    outputSource: parallel_printreads/qual_pdf
 
   # vcf
   mutect_vcf:
@@ -245,6 +194,7 @@ outputs:
     outputSource: variant_calling/mutect_norm_vcf
     secondaryFiles:
       - .tbi
+
   # snp_pileup
   snp_pileup:
     type: File
@@ -262,6 +212,7 @@ outputs:
   portal_file:
     type: File
     outputSource: structural_variants/portal_file
+
   # maf
   maf:
     type: File
@@ -293,56 +244,131 @@ outputs:
 
 steps:
 
-  alignment:
-    run: ../modules/pair/alignment-pair.cwl
+  create_bam_array:
     in:
-        runparams: runparams
-        db_files: db_files
         tumor: tumor
         normal: normal
-        genome:
-          valueFrom: ${ return inputs.runparams.genome }
-        intervals:
-          valueFrom: ${ return inputs.runparams.intervals }
-        opt_dup_pix_dist:
-          valueFrom: ${ return inputs.runparams.opt_dup_pix_dist }
-        hapmap: hapmap
-        dbsnp: dbsnp
-        indels_1000g: indels_1000g
-        snps_1000g: snps_1000g
-        covariates:
-          valueFrom: ${ return inputs.runparams.covariates }
-        abra_scratch:
-          valueFrom: ${ return inputs.runparams.abra_scratch }
-        abra_ram_min:
-          valueFrom: ${ return inputs.runparams.abra_ram_min }
-        gatk_jar_path:
-          valueFrom: ${ return inputs.runparams.gatk_jar_path }
-        bait_intervals:
-          valueFrom: ${ return inputs.db_files.bait_intervals }
-        target_intervals:
-          valueFrom: ${ return inputs.db_files.target_intervals }
-        fp_intervals:
-          valueFrom: ${ return inputs.db_files.fp_intervals }
-        mouse_fasta: mouse_fasta
-        ref_fasta: ref_fasta
-        conpair_markers_bed:
-          valueFrom: ${ return inputs.db_files.conpair_markers_bed }
-    out: [bams,clstats1,clstats2,md_metrics,covint_list,bed,as_metrics,hs_metrics,insert_metrics,insert_pdf,per_target_coverage,qual_metrics,qual_pdf,doc_basecounts,gcbias_pdf,gcbias_metrics,gcbias_summary,conpair_pileup,disambiguate_summary]
+        bam_tumor:
+            valueFrom: ${ return inputs.tumor.bam[0]; }
+        bam_normal:
+            valueFrom: ${ return inputs.normal.bam[0]; }
+    out: [ bams, bam_tumor, bam_normal ]
+    run:
+        class: ExpressionTool
+        id: create-bam-array
+        requirements:
+            - class: InlineJavascriptRequirement
+        inputs:
+            bam_tumor: File
+            bam_normal: File
+        outputs:
+            bams:
+                type: File[]
+            bam_tumor: File
+            bam_normal: File
+        expression: "${
+            var project_object = {};
+            project_object['bams'] = [ inputs.bam_tumor, inputs.bam_normal ];
+            project_object['bam_tumor'] = inputs.bam_tumor;
+            project_object['bam_normal'] = inputs.bam_normal; 
+            return project_object;
+        }"
+            
+  index_bams:
+      run: ../tools/cmo-utils/1.9.15/cmo-index.cwl
+      in:
+          bam: create_bam_array/bams
+      scatter: [bam]
+      scatterMethod: dotproduct
+      out: [bam_indexed]
+
+  gatk_base_recalibrator:
+      run: ../tools/gatk.BaseRecalibrator/3.3-0/gatk.BaseRecalibrator.cwl
+      in:
+          runparams: runparams
+          reference_sequence: ref_fasta
+          input_file: index_bams/bam_indexed
+          dbsnp: dbsnp
+          hapmap: hapmap
+          indels_1000g: indels_1000g
+          snps_1000g: snps_1000g
+          knownSites:
+              valueFrom: ${return [inputs.dbsnp,inputs.hapmap, inputs.indels_1000g, inputs.snps_1000g]}
+          covariate:
+              valueFrom: ${ return inputs.runparams.covariates }
+          out:
+              valueFrom: ${ return "recal.matrix"; }
+          read_filter:
+            valueFrom: ${ return ["BadCigar"]; }
+      out: [recal_matrix]
+
+  parallel_printreads:
+      in:
+          input_file: index_bams/bam_indexed
+          reference_sequence: ref_fasta
+          BQSR: gatk_base_recalibrator/recal_matrix
+      out: [out,qual_metrics,qual_pdf]
+      scatter: [input_file]
+      scatterMethod: dotproduct
+      run:
+          class: Workflow
+          id: parallel_printreads
+          inputs:
+              input_file: File
+              reference_sequence: File
+              BQSR: File
+          outputs:
+              out:
+                  type: File
+                  secondaryFiles:
+                      - ^.bai
+                  outputSource: gatk_print_reads/out_bam
+              qual_metrics:
+                  type: File
+                  outputSource: quality_metrics/qual_file
+              qual_pdf:
+                  type: File
+                  outputSource: quality_metrics/qual_hist
+          steps:
+              gatk_print_reads:
+                  run: ../tools/gatk.PrintReads/3.3-0/gatk.PrintReads.cwl
+                  in:
+                      reference_sequence: reference_sequence
+                      BQSR: BQSR
+                      input_file: input_file
+                      num_cpu_threads_per_data_thread:
+                          valueFrom: ${ return "5"; }
+                      emit_original_quals:
+                          valueFrom: ${ return true; }
+                      baq:
+                          valueFrom: ${ return ['RECALCULATE'];}
+                      out:
+                          valueFrom: ${ return inputs.input_file.basename.replace(".bam", ".printreads.bam");}
+                  out: [out_bam]
+              quality_metrics:
+                  run: ../tools/picard.CollectMultipleMetrics/2.9/picard.CollectMultipleMetrics.cwl
+                  in:
+                    I: gatk_print_reads/out_bam
+                    REFERENCE_SEQUENCE: reference_sequence
+                    PROGRAM:
+                      valueFrom: ${return ["null","MeanQualityByCycle"]}
+                    O:
+                      valueFrom: ${ return inputs.I.basename.replace(".bam", ".qmetrics")}
+                  out: [qual_file, qual_hist]
 
   variant_calling:
     run: ../modules/pair/variant-calling-pair.cwl
     in:
         runparams: runparams
         db_files: db_files
-        bams: alignment/bams
+        bams: parallel_printreads/out
         tumor: tumor
         normal: normal
+        bed: bed_file
         normal_bam:
             valueFrom: ${ return inputs.bams[1]; }
         tumor_bam:
             valueFrom: ${ return inputs.bams[0]; }
-        bed: alignment/bed
         normal_sample_name:
             valueFrom: ${ return inputs.normal.ID; }
         tumor_sample_name:
@@ -372,9 +398,9 @@ steps:
         runparams: runparams
         db_files: db_files
         exac_filter: exac_filter
-        bams: alignment/bams
         tumor: tumor
         normal: normal
+        bams: parallel_printreads/out
         normal_bam:
             valueFrom: ${ return inputs.bams[1]; }
         tumor_bam:
@@ -402,10 +428,10 @@ steps:
     in:
         runparams: runparams
         db_files: db_files
-        bams: alignment/bams
         annotate_vcf: variant_calling/annotate_vcf
         tumor: tumor
         normal: normal
+        bams: parallel_printreads/out
         genome:
             valueFrom: ${ return inputs.runparams.genome }
         ref_fasta: ref_fasta
@@ -431,5 +457,5 @@ steps:
       pair:
         source: [tumor, normal]
         linkMerge: merge_flattened
-      bams: alignment/bams
+      bams: parallel_printreads/out
     out: [ genome, assay, pi, pi_email, project_prefix, normal_sample_name, tumor_sample_name, normal_bam, tumor_bam ]
