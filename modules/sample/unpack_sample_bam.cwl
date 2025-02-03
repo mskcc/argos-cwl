@@ -33,8 +33,13 @@ steps:
     out: [rg_output]
     scatter: [input_bam]
     scatterMethod: dotproduct
+  flatten_dir:
+    run: ../../tools/flatten-array/1.0.0/flatten-array-directory.cwl
+    in:
+      directory_list: unpack_bam/rg_output
+    out: [output_directory]
   consolidate_reads:
     run: ../../tools/consolidate-files/consolidate-reads.cwl
     in:
-      reads_dir: unpack_bam/rg_output
+      reads_dir: flatten_dir/output_directory
     out: [r1,r2]
