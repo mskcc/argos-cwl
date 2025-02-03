@@ -25,6 +25,7 @@ inputs:
         zR1: File[]
         zR2: File[]
         bam: File[]
+        zBam: File[]
         RG_ID: string[]
         adapter: string
         adapter2: string
@@ -126,6 +127,7 @@ steps:
                   R2: File[]
                   zR1: File[]
                   zR2: File[]
+                  zBam: File[]
                   bam: File[]
                   RG_ID: string[]
                   adapter: string
@@ -147,6 +149,7 @@ steps:
             R2: File[]
             zR1: File[]
             zR2: File[]
+            zBam: File[]
             bam: File[]
             RG_ID: string[]
             adapter: string
