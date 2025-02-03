@@ -31,6 +31,8 @@ steps:
       input_bam: bam
       sample_id: sample_id
     out: [rg_output]
+    scatter: [input_bam]
+    scatterMethod: dotproduct
   consolidate_reads:
     run: ../../tools/consolidate-files/consolidate-reads.cwl
     in:

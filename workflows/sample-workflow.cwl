@@ -174,8 +174,6 @@ steps:
       bam: get_sample_info/zBam
       sample_id: get_sample_info/ID
     out: [r1,r2]
-    scatter: [bam]
-    scatterMethod: dotproduct
   resolve_pdx:
     run: ../modules/sample/resolve-pdx.cwl
     in:
@@ -200,8 +198,6 @@ steps:
         linkMerge: merge_flattened
       sample_id: get_sample_info/ID
     out: [r1,r2]
-    scatter: [bam]
-    scatterMethod: dotproduct
   chunking:
     run: ../tools/cmo-utils/1.9.15/cmo-split-reads.cwl
     in:
