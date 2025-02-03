@@ -12,7 +12,7 @@ requirements:
 inputs:
 
   sample_id: string
-  bam: File
+  bam: File[]
 
 
 outputs:
