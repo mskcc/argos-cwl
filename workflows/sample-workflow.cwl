@@ -163,8 +163,19 @@ steps:
             if(sample_object['zR1'].length != 0 && sample_object['zR2'].length != 0 ){
               sample_object['zPU'] = [sample_object['PU']];
             }
+            if(sample_object['zBam'].length != 0){
+              sample_object['zPU'] = [sample_object['PU']];
+            }
             return sample_object;
           }"
+  unpack_pdx_bam:
+    run: ../modules/sample/unpack_sample_bam.cwl
+    in:
+      bam: get_sample_info/zBam
+      sample_id: get_sample_info/ID
+    out: [r1,r2]
+    scatter: [bam]
+    scatterMethod: dotproduct
   resolve_pdx:
     run: ../modules/sample/resolve-pdx.cwl
     in:
@@ -172,39 +183,33 @@ steps:
       mouse_reference: mouse_fasta
       sample_id: get_sample_info/ID
       lane_id: get_sample_info/zPU
-      r1: get_sample_info/zR1
-      r2: get_sample_info/zR2
+      r1:
+        source: [get_sample_info/zR1, unpack_pdx_bam/r1]
+        linkMerge: merge_flattened
+      r2:
+        source: [get_sample_info/zR2, unpack_pdx_bam/r2]
+        linkMerge: merge_flattened
     out: [disambiguate_bam,summary]
     scatter: [lane_id]
     scatterMethod: dotproduct
   unpack_bam:
-    run: ../tools/unpack-bam/0.1.0/unpack-bam.cwl
+    run: ../modules/sample/unpack_sample_bam.cwl
     in:
-      input_bam:
+      bam:
         source: [resolve_pdx/disambiguate_bam, get_sample_info/bam]
         linkMerge: merge_flattened
       sample_id: get_sample_info/ID
-    out: [rg_output]
-    scatter: [input_bam]
-    scatterMethod: dotproduct
-  flatten_dir:
-    run: ../tools/flatten-array/1.0.0/flatten-array-directory.cwl
-    in:
-      directory_list: unpack_bam/rg_output
-    out: [output_directory]
-  consolidate_reads:
-    run: ../tools/consolidate-files/consolidate-reads.cwl
-    in:
-      reads_dir: flatten_dir/output_directory
     out: [r1,r2]
+    scatter: [bam]
+    scatterMethod: dotproduct
   chunking:
     run: ../tools/cmo-utils/1.9.15/cmo-split-reads.cwl
     in:
       fastq1:
-        source: [get_sample_info/R1, consolidate_reads/r1]
+        source: [get_sample_info/R1, unpack_bam/r1]
         linkMerge: merge_flattened
       fastq2:
-        source: [get_sample_info/R2, consolidate_reads/r2]
+        source: [get_sample_info/R2, unpack_bam/r2]
         linkMerge: merge_flattened
       platform_unit: get_sample_info/PU
     out: [chunks1, chunks2]
