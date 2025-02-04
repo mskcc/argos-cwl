@@ -201,6 +201,8 @@ normals:
     PL: Illumina
     PU:
       - bar_normal_1-bar_normal
+    R1: []
+    R2: []
     zBam:
       - class: File
         path: /juno/bic/work/ci/jenkins/resources/pipeline_data/data/SampleWorkflowPair1Sample1/SampleWorkflow/bar_normal.rg.md.bam
