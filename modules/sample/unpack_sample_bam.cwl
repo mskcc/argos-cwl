@@ -12,7 +12,7 @@ requirements:
 inputs:
 
   sample_id: string
-  bam: File[]
+  bams: File[]
 
 
 outputs:
@@ -28,7 +28,7 @@ steps:
   unpack_bam:
     run: ../../tools/unpack-bam/0.1.0/unpack-bam.cwl
     in:
-      input_bam: bam
+      input_bam: bams
       sample_id: sample_id
     out: [rg_output]
     scatter: [input_bam]

@@ -171,7 +171,7 @@ steps:
   unpack_pdx_bam:
     run: ../modules/sample/unpack_sample_bam.cwl
     in:
-      bam: get_sample_info/zBam
+      bams: get_sample_info/zBam
       sample_id: get_sample_info/ID
     out: [r1,r2]
   resolve_pdx:
@@ -193,7 +193,7 @@ steps:
   unpack_bam:
     run: ../modules/sample/unpack_sample_bam.cwl
     in:
-      bam:
+      bams:
         source: [resolve_pdx/disambiguate_bam, get_sample_info/bam]
         linkMerge: merge_flattened
       sample_id: get_sample_info/ID
