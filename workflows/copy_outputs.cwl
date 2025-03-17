@@ -26,19 +26,19 @@ inputs:
 outputs:
 
   vcf_dir:
-    type: Directory
+    type: Directory?
     outputSource: collect_vcf/directory
   bam_dir:
-    type: Directory
+    type: Directory?
     outputSource: collect_bam/directory
   maf_dir:
-    type: Directory
+    type: Directory?
     outputSource: collect_maf/directory
   pileup_dir:
-    type: Directory
+    type: Directory?
     outputSource: collect_pileup/directory
   disambiguate_dir:
-    type: Directory
+    type: Directory?
     outputSource: collect_disambiguate/directory
   meta_files:
     type: File[]
