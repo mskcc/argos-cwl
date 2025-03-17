@@ -23,7 +23,7 @@ inputs:
 outputs:
 
   directory:
-    type: Directory
+    type: Directory?
 
 # This tool returns a Directory object,
 # which holds all output files from the list
@@ -39,6 +39,10 @@ expression: |
         output_files.push(inputs.files[i]);
       }
     }
+
+    if (output_files.length == 0 ){
+      return {'directory': {} }
+      }
 
     return {
       'directory': {
