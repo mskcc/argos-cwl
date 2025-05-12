@@ -56,10 +56,15 @@ outputs:
         ${
             return inputs.output_dir.concat('/*_summary.txt');
         }
+      outputEval: |
+        ${
+          self[0].basename=inputs.prefix+"_disambiguate_summary.txt";
+          return self;
+        }
 requirements:
   - class: ResourceRequirement
     ramMin: 32000
-    coresMin: 4
+    coresMin: 6
   - class: DockerRequirement
     dockerPull: 'mskcc/disambiguate:1.0.0'
   - class: InlineJavascriptRequirement

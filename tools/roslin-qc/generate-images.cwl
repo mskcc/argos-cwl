@@ -7,7 +7,7 @@ requirements:
     listing: $(inputs.data_dir.listing)
   ResourceRequirement:
     ramMin: 8000
-    coresMin: 1
+    coresMin: 3
   DockerRequirement:
     dockerPull: mskcc/roslin-variant-roslin-qc:0.6.4
 

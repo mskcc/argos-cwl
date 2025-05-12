@@ -35,7 +35,7 @@ requirements:
   InlineJavascriptRequirement: {}
   ResourceRequirement:
     ramMin: 16000
-    coresMin: 3
+    coresMin: 5
   DockerRequirement:
     dockerPull: mskcc/roslin-variant-picard:2.9
 

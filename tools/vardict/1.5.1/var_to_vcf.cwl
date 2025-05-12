@@ -14,7 +14,7 @@ arguments:
 requirements:
   InlineJavascriptRequirement: {}
   ResourceRequirement:
-    coresMin: 4
+    coresMin: 6
     ramMin: 32000
   DockerRequirement:
     dockerPull: mskcc/roslin-variant-vardict:1.5.1

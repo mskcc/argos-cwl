@@ -28,7 +28,7 @@ requirements:
   InlineJavascriptRequirement: {}
   ResourceRequirement:
     ramMin: 24000
-    coresMin: 1
+    coresMin: 3
   DockerRequirement:
     dockerPull: mskcc/roslin-variant-mutect:1.1.4
 

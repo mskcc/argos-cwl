@@ -10,7 +10,7 @@ requirements:
   InlineJavascriptRequirement: {}
   ResourceRequirement:
     ramMin: 8000
-    coresMin: 1
+    coresMin: 3
   DockerRequirement:
     dockerPull: mskcc/roslin-variant-htstools:0.1.1
 

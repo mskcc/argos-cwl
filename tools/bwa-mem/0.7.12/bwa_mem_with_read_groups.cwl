@@ -202,7 +202,7 @@ arguments:
 requirements:
   - class: ResourceRequirement
     ramMin: 32000
-    coresMin: 4
+    coresMin: 6
   - class: DockerRequirement
     dockerPull: 'mskcc/bwa_mem:0.7.12'
   - class: InlineJavascriptRequirement

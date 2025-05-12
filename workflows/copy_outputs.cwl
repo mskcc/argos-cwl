@@ -16,6 +16,9 @@ inputs:
   bam: File[]
   maf: File[]
   pileup: File[]
+  disambiguate:
+    type: File[]
+    default: []
   meta:
     type: File[]
     default: []
@@ -34,6 +37,9 @@ outputs:
   pileup_dir:
     type: Directory
     outputSource: collect_pileup/directory
+  disambiguate_dir:
+    type: Directory
+    outputSource: collect_disambiguate/directory
   meta_files:
     type: File[]
     outputSource: meta
@@ -67,5 +73,12 @@ steps:
       files: pileup
       output_directory_name:
         valueFrom: ${ return "pileup"; }
+    out: [directory]
+  collect_disambiguate:
+    run: ../tools/consolidate-files/consolidate-files.cwl
+    in:
+      files: disambiguate
+      output_directory_name:
+        valueFrom: ${ return "disambiguate"; }
     out: [directory]
     
