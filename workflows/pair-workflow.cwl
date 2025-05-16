@@ -209,7 +209,7 @@ outputs:
     type: File[]
     outputSource: alignment/conpair_pileup
   coverage_beds:
-    type: File[]
+    type: File
     outputSource: alignment/bed
 
   # disambiguate info
