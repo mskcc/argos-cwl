@@ -18,3 +18,8 @@ pileup:
     path: /juno/work/ci/jenkins/resources/pipeline_data/data/PairWorkflowPair0/PairWorkflow/foo_tumor.rg.md.pileup
   - class: File
     path: /juno/work/ci/jenkins/resources/pipeline_data/data/PairWorkflowPair0/PairWorkflow/foo_normal.rg.md.pileup
+bed:
+  - class: File
+    path: /juno/bic/work/ci/jenkins/resources/pipeline_data/data/bed/bar_tumor.bar_normal.fci.bed
+  - class: File
+    path: /juno/bic/work/ci/jenkins/resources/pipeline_data/data/bed/foo_tumor.foo_normal.fci.bed

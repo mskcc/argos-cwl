@@ -28,3 +28,8 @@ disambiguate:
     path: /juno/bic/work/ci/jenkins/resources/pipeline_data/data/disambiguate/foo_tumor_disambiguate_summary.txt
   - class: File
     path: /juno/bic/work/ci/jenkins/resources/pipeline_data/data/disambiguate/bar_tumor_disambiguate_summary.txt
+bed:
+  - class: File
+    path: /juno/bic/work/ci/jenkins/resources/pipeline_data/data/bed/bar_tumor.bar_normal.fci.bed
+  - class: File
+    path: /juno/bic/work/ci/jenkins/resources/pipeline_data/data/bed/foo_tumor.foo_normal.fci.bed
