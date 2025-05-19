@@ -14,6 +14,7 @@ inputs:
 
   vcf: File[]
   bam: File[]
+  bed: File[]
   maf: File[]
   pileup: File[]
   disambiguate:
@@ -26,19 +27,22 @@ inputs:
 outputs:
 
   vcf_dir:
-    type: Directory
+    type: Directory?
     outputSource: collect_vcf/directory
   bam_dir:
-    type: Directory
+    type: Directory?
     outputSource: collect_bam/directory
+  bed_dir:
+    type: Directory?
+    outputSource: collect_bed/directory
   maf_dir:
-    type: Directory
+    type: Directory?
     outputSource: collect_maf/directory
   pileup_dir:
-    type: Directory
+    type: Directory?
     outputSource: collect_pileup/directory
   disambiguate_dir:
-    type: Directory
+    type: Directory?
     outputSource: collect_disambiguate/directory
   meta_files:
     type: File[]
@@ -59,6 +63,13 @@ steps:
       files: bam
       output_directory_name:
         valueFrom: ${ return "bam"; }
+    out: [directory]
+  collect_bed:
+    run: ../tools/consolidate-files/consolidate-files.cwl
+    in:
+      files: bed
+      output_directory_name:
+        valueFrom: ${ return "bed"; }
     out: [directory]
   collect_maf:
     run: ../tools/consolidate-files/consolidate-files.cwl
