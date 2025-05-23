@@ -10,6 +10,10 @@ requirements:
   InlineJavascriptRequirement: {}
 
 inputs:
+
+  bedfile:
+    type: File
+
   db_files:
     type:
       type: record
@@ -210,7 +214,8 @@ outputs:
     outputSource: alignment/conpair_pileup
   coverage_beds:
     type: File
-    outputSource: alignment/bed
+    outputSource:
+      valueFrom: ${ return inputs.bedfile; }
   
   # disambiguate info
   disambiguate_summary:
@@ -347,7 +352,7 @@ steps:
             valueFrom: ${ return inputs.bams[1]; }
         tumor_bam:
             valueFrom: ${ return inputs.bams[0]; }
-        bed: alignment/bed
+        bed: bedfile
         normal_sample_name:
             valueFrom: ${ return inputs.normal.ID; }
         tumor_sample_name:
