@@ -214,8 +214,7 @@ outputs:
     outputSource: alignment/conpair_pileup
   coverage_beds:
     type: File
-    outputSource:
-      valueFrom: ${ return inputs.bedfile; }
+    outputSource: alignment/bed 
   
   # disambiguate info
   disambiguate_summary:
